@@ -29,7 +29,7 @@ namespace MsgContracts
             _ = services.AddMassTransit(x =>
             {
                 x.AddConsumer<T>();
-                //x.SetKebabCaseEndpointNameFormatter();
+                x.SetKebabCaseEndpointNameFormatter();
 
                 //switch code
                 switch (serviceProvider)

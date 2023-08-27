@@ -26,8 +26,8 @@ namespace MassTransitDemo.Utils
 
             _ = builder.Services.AddMassTransit(x =>
             {
-                x.AddConsumer<MessageConsumer>();
-                x.SetKebabCaseEndpointNameFormatter();
+                //x.AddConsumer<MessageConsumer>();
+                //x.SetKebabCaseEndpointNameFormatter();
 
                 //switch code
                 switch (serviceProvider)
@@ -47,7 +47,7 @@ namespace MassTransitDemo.Utils
 
                             cfg.SubscriptionEndpoint<DecosQ>("message-submitted-decos", e =>
                             {
-                                e.ConfigureConsumer<MessageConsumer>(context);
+                                //e.ConfigureConsumer<MessageConsumer>(context);
                             });
                             cfg.ConfigureEndpoints(context);
                         });

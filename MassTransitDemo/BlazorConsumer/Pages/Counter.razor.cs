@@ -19,9 +19,10 @@ namespace BlazorConsumer.Pages
         }
 
         protected override async Task OnInitializedAsync()
-        {
-            await Task.Yield();
+        {            
             EventAggregator.SubsribeEvent(this);
+
+            await Task.Yield();
         }
 
         private void IncrementCount()

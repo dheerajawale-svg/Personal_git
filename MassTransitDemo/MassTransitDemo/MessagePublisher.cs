@@ -16,7 +16,7 @@ namespace MassTransitDemo
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await Task.Delay(7000, stoppingToken);
+                await Task.Delay(3000, stoppingToken);
 
                 Console.WriteLine("Enter Text and Press Enter");
                 var userInput = Console.ReadLine();

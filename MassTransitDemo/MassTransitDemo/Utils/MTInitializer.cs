@@ -1,10 +1,18 @@
 ﻿using MassTransit;
 using MsgContracts;
+using System.Reflection;
 
 namespace MassTransitDemo.Utils
 {
     public class MTInitializer
     {
+        public static void SetJson(ConfigurationManager configuration)
+        {
+            var dir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var path = Path.Combine(dir, "commonappsettings.json");
+            configuration.AddJsonFile(path, false, true);
+        }
+
         public static void ConfigureMassTransit(WebApplicationBuilder builder,
                                                 MassTransitSettings appSettings)
         {

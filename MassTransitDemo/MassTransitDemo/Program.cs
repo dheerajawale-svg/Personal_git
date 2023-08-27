@@ -1,6 +1,7 @@
 using MassTransit;
 using MassTransitDemo.Utils;
 using MsgContracts;
+using System.Reflection;
 
 namespace MassTransitDemo
 {
@@ -16,7 +17,7 @@ namespace MassTransitDemo
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Configuration.AddJsonFile("commonappsettings.json", false, true);
+            Utils.MTInitializer.SetJson(builder.Configuration);
 
             var settings = builder.Configuration.GetSection("MassTransit").Get<MassTransitSettings>();
 

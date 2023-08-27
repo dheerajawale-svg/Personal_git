@@ -15,6 +15,8 @@ namespace BlazorConsumer
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
 
+            MTInitializer.SetJson(builder.Configuration);
+
             builder.Services.AddSingleton<IEventAggregator, EventAggregator>();
 
             var settings = builder.Configuration.GetSection("MassTransit").Get<MassTransitSettings>();

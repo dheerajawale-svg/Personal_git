@@ -15,6 +15,7 @@ namespace MassTransitConsumer
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            MTInitializer.SetJson(builder.Configuration);
 
             var settings = builder.Configuration.GetSection("MassTransit").Get<MassTransitSettings>();
 

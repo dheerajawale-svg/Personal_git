@@ -14,7 +14,7 @@
       "QueueName": "decos_q"
     },
     "Azure": {
-      "ConnectionString": "Endpoint=sb://decos-masstransit.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=jCp/WsFMwYDvZhBNQnd3P8KC7UJmw2h7W+ASbDpqxCI="
+      "ConnectionString": "Endpoint=sb://decos-masstransit1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SLY1W3JxN11+Q7KJdGOWXviV1jt6++xKb+ASbFK71qQ="
     }
   }
 }

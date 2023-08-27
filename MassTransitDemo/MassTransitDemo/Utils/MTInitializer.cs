@@ -26,8 +26,8 @@ namespace MassTransitDemo.Utils
 
             _ = builder.Services.AddMassTransit(x =>
             {
-                //x.AddConsumer<MessageConsumer>();
-                //x.SetKebabCaseEndpointNameFormatter();
+                x.AddConsumer<MessageConsumer>();
+                x.SetKebabCaseEndpointNameFormatter();
 
                 //switch code
                 switch (serviceProvider)
@@ -45,10 +45,10 @@ namespace MassTransitDemo.Utils
                             cfg.Host(appSettings.Azure.ConnectionString);
                             cfg.Send<DecosQ>(s => s.UseCorrelationId(x => x.Id));
 
-                            //cfg.SubscriptionEndpoint<DecosQ>("message-submitted-decos", e =>
-                            //{
-                            //    e.ConfigureConsumer<MessageConsumer>(context);
-                            //});
+                            cfg.SubscriptionEndpoint<DecosQ>("message-submitted-decos", e =>
+                            {
+                                e.ConfigureConsumer<MessageConsumer>(context);
+                            });
                             cfg.ConfigureEndpoints(context);
                         });
                         break;

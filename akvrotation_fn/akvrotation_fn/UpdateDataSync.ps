@@ -1,0 +1,40 @@
+using namespace System.Net
+
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "Processing Update Sql Sync Http request."
+
+Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"
+$psmessage = $Request.Body
+$env = $psmessage.Env
+$secretName = $psmessage.PwdSecretName
+
+$user = "otoscan-sqladmin"
+[string] $password =  Get-AzKeyVaultSecret -VaultName "nat-otocloud-kv" -Name $secretName -AsPlainText
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+$globalCredential = new-object -Typename System.Management.Automation.PSCredential -argumentlist $user, $securePassword
+
+Get-AzSubscription | Where-Object { ($_.Name -like $env)} | ForEach-Object {
+    Select-AzSubscription -SubscriptionName $_ | Out-null
+    Get-AzSqlServer | ForEach-Object {
+        #Write $_
+        $sqlDb = Get-AzSqlDatabase -ResourceGroupName $_.ResourceGroupName -ServerName $_.ServerName -DatabaseName "sqldb*"
+
+        $sqlDb | ForEach-Object {
+            Get-AzSqlSyncGroup -ResourceGroupName $_.ResourceGroupName -ServerName $_.ServerName -DatabaseName $_.DatabaseName | ForEach-Object {
+                #Write $_
+                $syncMember = Get-AzSqlSyncMember -ResourceGroupName $_.ResourceGroupName -ServerName $_.ServerName -DatabaseName $_.DatabaseName -SyncGroupName $_.SyncGroupName
+                Update-AzSqlSyncMember -ResourceGroupName $_.ResourceGroupName -ServerName $_.ServerName -DatabaseName $_.DatabaseName -SyncGroupName $_.SyncGroupName -MemberDatabaseCredential $globalCredential -Name $syncMember.SyncMemberName
+                Update-AzSqlSyncGroup -Name $_.SyncGroupName -DatabaseName $_.DatabaseName -ServerName $_.ServerName -ResourceGroupName $_.ResourceGroupName -DatabaseCredential $globalCredential
+            }
+        }
+    }
+}
+
+# Associate values to output bindings by calling 'Push-OutputBinding'.
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = [HttpStatusCode]::OK
+    Body = "Operation Completed"
+})

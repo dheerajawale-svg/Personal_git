@@ -1,0 +1,16 @@
+﻿@page "/"
+
+<PageTitle>MassTransit</PageTitle>
+
+<h1>Consumer</h1>
+
+<p role="status">Messages Received : - </p>
+
+<ul>
+    @foreach (var item in _messages)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+

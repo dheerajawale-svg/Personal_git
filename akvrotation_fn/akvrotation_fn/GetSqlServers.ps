@@ -1,0 +1,27 @@
+using namespace System.Net
+
+# Input bindings are passed in via param block.
+param($Request, $TriggerMetadata)
+
+# Write to the Azure Functions log stream.
+Write-Host "PowerShell HTTP trigger function processing a request."
+
+$sqlArray = @()
+$env = $Request.Body
+Get-AzSubscription | Where-Object { ($_.Name -like $env)} | ForEach-Object{
+    Select-AzSubscription -SubscriptionName $_ | Out-null        
+    $sqlArray += (Get-AzSqlServer | ForEach-Object {
+        New-Object PsObject -Property @{
+            SqlName = $_.ServerName
+            Location = $_.Location
+            User = $_.SqlAdministratorLogin
+        }
+    }
+   )
+}
+
+# Associate values to output bindings by calling 'Push-OutputBinding'.
+Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    StatusCode = [HttpStatusCode]::OK
+    Body = $sqlArray
+})

@@ -1,7 +1,7 @@
 {
   "AllowedHosts": "*",
   "MassTransit": {
-    "Provider": "Azure", //InMemory, Azure, AWS, RabbitMq
+    "Provider": "RabbitMq", //InMemory, Azure, AWS, RabbitMq
     "RabbitMq": {
       "host": "natus-rabbitmq-dev.eastus.azurecontainer.io",
       "username": "guest",

@@ -19,7 +19,7 @@ namespace MassTransitConsumer
 
             var settings = builder.Configuration.GetSection("MassTransit").Get<MassTransitSettings>();
 
-            MTInitializer.ConfigureMassTransit<MessageConsumer>(builder.Services, settings); // MassTransit
+            MTInitializer.ConfigureMassTransit<MessageConsumer>(builder.Services, settings, isReceiver: true); // MassTransit
 
             var app = builder.Build();
 

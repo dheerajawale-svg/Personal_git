@@ -16,12 +16,12 @@ namespace MassTransitDemo
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await Task.Delay(3000, stoppingToken);
+                await Task.Delay(1000, stoppingToken);
 
                 Console.WriteLine("Enter Text and Press Enter");
                 var userInput = Console.ReadLine();
 
-                DecosQ message = new() { Message = $"You wrote: {userInput} at {DateTimeOffset.Now}" };
+                DecosQ message = new() { Message = $"You wrote: \"{userInput}\" - at {DateTimeOffset.Now}" };
                 await _bus.Publish(message, stoppingToken);
 
                 //await _bus.Publish(new Message { Text = $"The time is {DateTimeOffset.Now}" }, stoppingToken);

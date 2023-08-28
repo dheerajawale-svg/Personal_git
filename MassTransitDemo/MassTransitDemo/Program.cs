@@ -1,5 +1,4 @@
 using MassTransit;
-using MassTransitDemo.Utils;
 using MsgContracts;
 using System.Reflection;
 
@@ -17,11 +16,11 @@ namespace MassTransitDemo
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            Utils.MTInitializer.SetJson(builder.Configuration);
+            MTInitializer.SetJson(builder.Configuration);
 
             var settings = builder.Configuration.GetSection("MassTransit").Get<MassTransitSettings>();
 
-            Utils.MTInitializer.ConfigureMassTransit(builder, settings); // MassTransit
+            MTInitializer.ConfigureMassTransit<MessageConsumer>(builder.Services, settings, isReceiver: false); // MassTransit
 
             builder.Services.AddHostedService<MessagePublisher>();
 

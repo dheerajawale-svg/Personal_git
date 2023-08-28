@@ -16,7 +16,7 @@ namespace MsgContracts
         }
 
         public static void ConfigureMassTransit<T>(IServiceCollection services,
-                                                MassTransitSettings appSettings) where T : class, IConsumer
+                                                MassTransitSettings appSettings, bool isReceiver) where T : class, IConsumer
         {
             var serviceProvider = appSettings.Provider;
 
@@ -28,8 +28,11 @@ namespace MsgContracts
 
             _ = services.AddMassTransit(x =>
             {
-                x.AddConsumer<T>();
-                x.SetKebabCaseEndpointNameFormatter();
+                if(isReceiver)
+                {
+                    x.AddConsumer<T>();
+                    x.SetKebabCaseEndpointNameFormatter();
+                }                
 
                 //switch code
                 switch (serviceProvider)
@@ -49,7 +52,8 @@ namespace MsgContracts
 
                             cfg.SubscriptionEndpoint<DecosQ>("message-submitted-decos", e =>
                             {
-                                e.ConfigureConsumer<T>(context);
+                                if(isReceiver)
+                                    e.ConfigureConsumer<T>(context);
                             });
                             cfg.ConfigureEndpoints(context);
                         });

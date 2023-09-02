@@ -46,7 +46,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import {VirtualScrollingComponent} from './virtual-scrolling/virtual-scrolling.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout'
-
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -95,7 +96,9 @@ import { FlexLayoutModule } from '@angular/flex-layout'
         MatGridListModule,
         MatTreeModule,
         ScrollingModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        MatFormFieldModule,
+        MatSnackBarModule,
     ],
     providers: [
         CoursesService

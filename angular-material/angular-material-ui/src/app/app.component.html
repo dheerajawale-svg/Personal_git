@@ -1,47 +1,72 @@
 
 <mat-sidenav-container fullscreen>
 
-    <mat-sidenav #sidenav>
+    <mat-sidenav #sidenav
+        mode="side"
+        [ngStyle]="{ 'width.em': sidenavWidth }"
+        (mouseenter)="increase()"
+        (mouseleave)="decrease()"
+        [class.mat-elevation-z2]=true>
 
-        <mat-nav-list (click)="sidenav.close()">
+        <mat-nav-list (click)="customClick()">
 
             <a mat-list-item routerLink="/">
                 <mat-icon>library_books</mat-icon>
-                <span>Courses</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Courses</span>
+                </div>
             </a>
 
             <a mat-list-item routerLink="about">
                 <mat-icon>question_answer</mat-icon>
-                <span>About</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>About</span>
+                </div>
             </a>
 
             <a mat-list-item routerLink="drag-drop-example">
                 <mat-icon>drag_indicator</mat-icon>
-                <span>Drag and Drop</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Drag and Drop</span>
+                </div>
             </a>
 
             <a mat-list-item routerLink="tree-demo">
                 <mat-icon>park</mat-icon>
-                <span>Tree Demo</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Tree Demo</span>
+                </div>
             </a>
 
             <a mat-list-item routerLink="virtual-scrolling">
                 <mat-icon>import_export</mat-icon>
-                <span>Virtual Scrolling</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Virtual Scrolling</span>
+                </div>
             </a>
 
             <a mat-list-item>
                 <mat-icon>person_add</mat-icon>
-                <span>Register</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Register</span>
+                </div>
             </a>
 
             <a mat-list-item>
                 <mat-icon>account_circle</mat-icon>
-                <span>Login</span>
+                <div fxFlex="10"></div>
+                <div *ngIf="sidenavWidth > 6" class="sidenav-item">
+                  <span>Login</span>
+                </div>
             </a>
 
         </mat-nav-list>
-
 
     </mat-sidenav>
 
@@ -49,7 +74,7 @@
     <mat-sidenav-content>
       <mat-toolbar class="myheader" color="primary" [class.mat-elevation-z8]=true>
 
-        <button mat-icon-button (click)="sidenav.open()">
+        <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
         </button>
 

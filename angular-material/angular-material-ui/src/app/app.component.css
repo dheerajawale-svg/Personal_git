@@ -24,3 +24,11 @@ mat-toolbar a {
   right: 0;
   margin: 0 auto;
 }
+
+.mat-mdc-snack-bar-container {
+  &.blue-snackbar {
+    --mdc-snackbar-container-color: #16b51e;
+    --mat-mdc-snack-bar-button-color: #ffffff;
+    --mdc-snackbar-supporting-text-color: #fff !important;
+  }
+}

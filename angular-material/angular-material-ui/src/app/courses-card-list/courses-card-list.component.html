@@ -5,11 +5,13 @@
 
     <mat-grid-tile  *ngFor="let course of courses">
 
-        <mat-card class="course-card mat-elevation-z7" fxFlexAlign="stretch">
+        <mat-card class="course-card mat-elevation-z8" fxFlexAlign="stretch">
 
-            <mat-card-header style="justify-content: center;">
-                <mat-card-title>{{course.description}}</mat-card-title>
-            </mat-card-header>
+          <!-- <mat-card-header style="justify-content: center;">
+            <mat-card-title>{{course.description}}</mat-card-title>
+          </mat-card-header> -->
+          <mat-card-title matTooltip="{{course.description}}"
+                          matTooltipPosition="above">{{course.description}}</mat-card-title>
 
             <img mat-card-image [src]="course.iconUrl">
 

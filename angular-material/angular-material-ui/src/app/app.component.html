@@ -6,7 +6,7 @@
         [ngStyle]="{ 'width.em': sidenavWidth }"
         (mouseenter)="increase()"
         (mouseleave)="decrease()"
-        [class.mat-elevation-z2]=true>
+        [class.mat-elevation-z2]=true opened>
 
         <mat-nav-list (click)="customClick()">
 
@@ -106,8 +106,5 @@
       <router-outlet ></router-outlet>
     </div>
     </mat-sidenav-content>
-
-
-
 
 </mat-sidenav-container>

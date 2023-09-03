@@ -31,7 +31,7 @@ export class AppComponent {
 
   customClick() {
     this.decrease()
-    this._snackBar.open('Clicked', 'Close', {
+    this._snackBar.open('Clicked', 'X', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
       // duration: 1500,

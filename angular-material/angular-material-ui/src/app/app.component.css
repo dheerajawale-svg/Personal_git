@@ -26,9 +26,17 @@ mat-toolbar a {
 }
 
 .mat-mdc-snack-bar-container {
-  &.blue-snackbar {
-    --mdc-snackbar-container-color: #16b51e;
-    --mat-mdc-snack-bar-button-color: #ffffff;
-    --mdc-snackbar-supporting-text-color: #fff !important;
-  }
+  --mdc-snackbar-container-color: #16b51e;
+  --mat-mdc-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #fff !important;
+  --mat-snack-bar-button-color:  #fff;
+  margin-right: 25px !important;
+}
+
+.mat-simple-snackbar {
+  justify-content: center !important;
+}
+
+.cdk-overlay-pane {
+  margin-bottom: calc(50vh - 50px)!important;
 }

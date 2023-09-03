@@ -16,26 +16,32 @@ export class AppComponent {
   sidenavWidth = 4;
   ngStyle: string;
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(private _snackBar: MatSnackBar) {}
 
   increase() {
     this.sidenavWidth = 15;
-    console.log('increase sidenav width');
   }
   decrease() {
     this.sidenavWidth = 4;
-    console.log('decrease sidenav width');
   }
 
   customClick() {
     this.decrease()
-    this._snackBar.open('Clicked', 'X', {
+    let snackBarRef = this._snackBar.open('Navbar Clicked!!!', 'Close', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      // duration: 1500,
+      duration: 3000,
       panelClass: ['blue-snackbar']
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      console.log('The snackbar action was triggered!');
+    });
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      console.log('The snackbar was dismissed');
     });
   }
 }

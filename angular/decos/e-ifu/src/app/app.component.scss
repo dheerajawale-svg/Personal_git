@@ -1,8 +1,13 @@
-.example-card {
-  max-width: 400px;
+.course-card {
+  margin: 20px 10px;
+  width: fit-content;
+  max-width:474px;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.top-row {
+  padding: 1em 0;
+}
+
+mat-form-field {
+  width: 100%;
 }

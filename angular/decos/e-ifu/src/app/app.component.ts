@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
@@ -9,17 +9,27 @@ import { MatRadioChange } from '@angular/material/radio';
 })
 export class AppComponent {
   title = 'e-ifu';
-  radioValue: number | undefined;
+  radioValue: string | undefined;
   email: string | null | undefined;
-  @ViewChild('patientDetailsForm') patientDetailsForm?: NgForm;
 
-  constructor() {
-    this.email = 'dheeraj.awale@hotmail.com';
+  consentForm: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) {
+    this.consentForm = _formBuilder.group({
+      email: [this.email, Validators.required],
+      purpose:['', Validators.required],
+      checked: new FormControl(false)
+    })
   }
 
   radioSelected(event: MatRadioChange) {
     console.log(event);
     this.radioValue = event.value;
+    // console.log(this.radioValue);
+  }
+
+  onNgSubmit() {
+    console.log(this.consentForm?.value);
     console.log(this.radioValue);
   }
 }

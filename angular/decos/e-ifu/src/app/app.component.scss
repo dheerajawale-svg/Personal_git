@@ -1,7 +1,6 @@
 .course-card {
   margin: 20px 10px;
   width: fit-content;
-  max-width:474px;
 }
 
 .top-row {
@@ -10,4 +9,48 @@
 
 mat-form-field {
   width: 100%;
+}
+
+.maindiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.topdiv {
+  margin: 2em;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+// .rgroup {
+//   display: flex;
+// }
+
+.radio-border {
+  display: flex;
+  justify-content: flex-end;
+  border: 1px solid #000;
+  border-radius: 75px 75px;
+  padding-left: -2px;
+  padding-right: 10px;
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  margin: 5px 0;
+}
+
+.radio-border:hover {
+  border: 1px solid #19cfd2;
+}
+
+.submitrow {
+  display: flex;
+  margin-top: 5em;
+  justify-content: center;
 }

@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay, filter } from 'rxjs/operators';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @UntilDestroy()
 @Component({
@@ -15,7 +16,32 @@ export class MainviewComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  exampleForm!: FormGroup;
+  checked: boolean | undefined;
+
   constructor(private observer: BreakpointObserver, private router: Router) {}
+
+  ngOnInit() {
+    this.exampleForm = new FormGroup({
+    'second': new FormControl(''),
+    'checked': new FormControl(false),
+    'first': new FormControl('example')
+    }, [this.validateIfChecked()]);
+}
+
+
+validateIfChecked(): ValidatorFn {
+    return (form: AbstractControl): ValidationErrors | null => {
+    const checked = form.get('checked');
+    const second= form.get('second');
+    if (checked && !second) {
+        return {
+        'err': true
+        };
+    }
+    return null;
+    }
+}
 
   ngAfterViewInit() {
     this.observer

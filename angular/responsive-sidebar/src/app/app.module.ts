@@ -40,6 +40,7 @@ import { MainviewComponent } from './mainview/mainview.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
+import { FormSampleComponent } from './form-sample/form-sample.component';
 
 const routes = [
   {path: 'main', component: MainviewComponent},
@@ -50,7 +51,8 @@ const routes = [
   declarations: [
     AppComponent,
     MainviewComponent,
-    LoginComponent
+    LoginComponent,
+    FormSampleComponent
   ],
   imports: [
     BrowserModule,

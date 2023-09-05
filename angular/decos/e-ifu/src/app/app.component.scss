@@ -54,3 +54,11 @@ h1 {
   margin-top: 5em;
   justify-content: center;
 }
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: #16b51e;
+  --mat-mdc-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #fff !important;
+  --mat-snack-bar-button-color:  #fff;
+  margin-right: 25px !important;
+}

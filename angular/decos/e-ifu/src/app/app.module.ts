@@ -38,6 +38,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
+import { FormErrorModule } from './shared/form-error.module';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,9 @@ import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
     MatSlideToggleModule,
     MatButtonToggleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    FormErrorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

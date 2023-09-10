@@ -39,11 +39,13 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 import { FormErrorModule } from './shared/form-error.module';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,6 @@ import { FormErrorModule } from './shared/form-error.module';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-
     FormErrorModule
   ],
   providers: [],

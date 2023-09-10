@@ -1,0 +1,68 @@
+<!-- <div fxFlexAlign="stretch">Hello</div> -->
+<!-- <app-theme-switch></app-theme-switch> -->
+<div style="overflow-y: hidden; background-color: #43a6b1;">
+
+  <div class="topdiv">
+    <img mat-card-image src="https://natus.com/themes/custom/natus_platform_theme/logo-white.png">
+  </div>
+
+  <div style="padding: 10px 25px 0px 25px;">
+    <div class="maindiv">
+      <mat-card class="course-card mat-elevation-z8" fxFlexAlign="stretch" >
+        <mat-card-header>
+          <mat-card-title>Welcome to natus</mat-card-title>
+          <mat-card-subtitle>The e-IFU website provides you with Instructions For Use from Natus</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="container" style="margin: 2em;">
+            <div class="row">
+              <div class="col-xs-12">
+                <form [formGroup]="consentForm" (ngSubmit)="onNgSubmit()">
+                    <div class="row">
+                      <mat-form-field appearance="outline" subscriptSizing='dynamic'>
+                        <mat-label>Email</mat-label>
+                        <input type="text" matInput formControlName="email">
+                        <mat-error *ngIf="consentForm.controls['email'].hasError('required')">
+                          E-mail is required
+                        </mat-error>
+                        <mat-error *ngIf="consentForm.controls['email'].hasError('email')">
+                          Enter a valid e-mail
+                        </mat-error>
+                        <!-- <mat-hint>Hint*</mat-hint> -->
+                      </mat-form-field>
+                      <mat-checkbox formControlName="checked"
+                                    style="margin-bottom: 10px; margin-left: 15px;"
+                                    (change)="boxChanged($event.checked)"
+                                    labelPosition="before">Opt out of email</mat-checkbox>
+                    </div>
+
+
+
+                    <div class="row">
+                        <mat-radio-group class="rgroup" aria-label="Select an option"
+                          (change)="radioSelected($event)" formControlName="purpose">
+                          <div class="radio-border">
+                            <mat-radio-button value="Professional">I am a Healthcare Professional</mat-radio-button>
+                          </div>
+                          <div class="radio-border">
+                            <mat-radio-button value="Patient">I am a Patient</mat-radio-button>
+                          </div>
+                        </mat-radio-group>
+                    </div>
+
+                  <div class="row submitrow">
+                    <button mat-raised-button color="primary" type="submit" >Continue</button>
+                  </div>
+
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</div>
+

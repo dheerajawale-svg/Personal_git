@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -15,7 +16,10 @@ export class WelcomeComponent {
 
   consentForm: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private _formBuilder: FormBuilder,
+              private _snackBar: MatSnackBar,
+              private elementRef: ElementRef,
+              private _router: Router) {
     this.consentForm = _formBuilder.group({
       email: [this.email],
       purpose:['', Validators.required],
@@ -25,6 +29,11 @@ export class WelcomeComponent {
 
   ngOnInit() {
     this.boxChanged(false);
+  }
+
+  ngAfterViewInit(): void {
+    this.elementRef.nativeElement.ownerDocument
+            .body.style.backgroundColor = 'whitesmoke';
   }
 
   radioSelected(event: MatRadioChange) {
@@ -47,6 +56,9 @@ export class WelcomeComponent {
   onNgSubmit() {
     if(this.consentForm.invalid) {
       this.openSnackbar("Invalid Data!!!");
+    }
+    else {
+      this._router.navigate(['main']);
     }
 
     console.log(this.consentForm?.value);

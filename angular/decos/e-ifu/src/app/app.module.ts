@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -37,19 +36,29 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
+import { AppComponent } from './app.component';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 import { FormErrorModule } from './shared/form-error.module';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MainviewComponent } from './mainview/mainview.component';
+
+
+const routes: Routes = [
+  {path: '', component: WelcomeComponent},
+  {path: 'main', component: MainviewComponent},
+  {path: 'theme', component: ThemeSwitchComponent},
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeSwitchComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    MainviewComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
 
@@ -83,7 +92,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatButtonToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    FormErrorModule
+    FormErrorModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

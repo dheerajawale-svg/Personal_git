@@ -1,8 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterViewInit, Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { delay, filter } from 'rxjs';
+import { delay, distinctUntilChanged, filter, pluck } from 'rxjs';
 
 @UntilDestroy()
 @Component({
@@ -11,12 +11,12 @@ import { delay, filter } from 'rxjs';
   styleUrls: ['./mainview.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MainviewComponent implements AfterViewInit  {
+export class MainviewComponent implements AfterViewInit, OnDestroy  {
   showFiller = false;
   showNavText = false;
   @ViewChild('drawer') matDrawer: any;
 
-  // constructor(private observer: BreakpointObserver, private router: Router) {}
+  constructor(private observer: BreakpointObserver, private router: Router) {}
 
   sidenavWidth = 4.5;
   // ngStyle: string | undefined;
@@ -39,27 +39,29 @@ export class MainviewComponent implements AfterViewInit  {
 
   //
   ngAfterViewInit() {
-    // this.observer
-    //   .observe(['(width: 800px)'])
-    //   .pipe(delay(1), untilDestroyed(this))
-    //   .subscribe((res) => {
-    //     console.log("Entered...1");
-    //     if (res.matches) {
-    //       //todo close
-    //       this.toggle();
-    //     }
-    //   });
+    this.observer
+      .observe(['(min-width: 800px)'])
+      .pipe(pluck('matches'), distinctUntilChanged())
+      .subscribe((res) => {
+        if(res) {
+          this.isVisible = !this.isVisible;
+          this.matDrawer.open();
+          this.matDrawer.mode = "side";
+        }
+        else {
+          this.matDrawer.mode = "over";
+          this.matDrawer.close();
+          this.isVisible = !this.isVisible;
+        }
+      });
+  }
 
-    //   this.router.events
-    //   .pipe(
-    //     untilDestroyed(this),
-    //     filter((e) => e instanceof NavigationEnd)
-    //   )
-    //   .subscribe(() => {
-    //     console.log("Entered...2");
-    //     //todo close
-    //     this.toggle();
-    //   });
+  ngOnDestroy(): void {
+    this.observer.ngOnDestroy();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
   }
 
 }

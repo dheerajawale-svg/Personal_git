@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-filter-view',
@@ -14,5 +14,10 @@ export class FilterViewComponent {
   close() {
     this.isVisible = false;
     this.drawerClosedEvent.emit(true);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    this.isVisible = changes['isVisible'].currentValue;
   }
 }

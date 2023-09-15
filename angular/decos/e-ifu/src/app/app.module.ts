@@ -35,6 +35,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { AppComponent } from './app.component';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
@@ -42,6 +43,8 @@ import { FormErrorModule } from './shared/form-error.module';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MainviewComponent } from './mainview/mainview.component';
+import { CardContentComponent } from './card-content/card-content.component';
+import { FilterViewComponent } from './filter-view/filter-view.component';
 
 
 const routes: Routes = [
@@ -55,7 +58,9 @@ const routes: Routes = [
     AppComponent,
     ThemeSwitchComponent,
     WelcomeComponent,
-    MainviewComponent
+    MainviewComponent,
+    CardContentComponent,
+    FilterViewComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +95,8 @@ const routes: Routes = [
     MatSnackBarModule,
     MatSlideToggleModule,
     MatButtonToggleModule,
+    MatExpansionModule,
+
     FormsModule,
     ReactiveFormsModule,
     FormErrorModule,

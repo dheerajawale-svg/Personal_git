@@ -29,8 +29,24 @@ justify-content: center !important;
   padding: 0px;
 }
 
+// ----------------- trial & error ------------------
 
-// mat-drwaer ------------------
+// ::ng-deep .mat-button-focus-overlay {
+//   background-color: red;
+// }
+
+// .mat-mdc-raised-button:hover { background-color: orange; }
+
+// .mat-mdc-raised-button
+// .mat-mdc-button-base
+// .mat-mdc-unelevated-button.mat-mdc-button-base
+// .mat-mdc-outlined-button
+// .mat-mdc-button-base
+// .mdc-button:hover {
+//   background-color: #16b51e;
+// }
+
+// ----------------- mat-drwaer ------------------
 .mat-drawer-inner-container{ overflow: hidden !important; }
 
 .example-container {
@@ -41,10 +57,9 @@ justify-content: center !important;
 }
 
 .example-sidenav-content {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+  height: 88vh;
+  // width: 100%;
+  // align-items: flex-start;
 }
 
 .example-sidenav {

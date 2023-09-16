@@ -10,3 +10,40 @@
 .mat-mdc-form-field + .mat-mdc-form-field {
   margin-left: 8px;
 }
+
+.content-div {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.card-content-outer-span {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.card-content-inner-span {
+  display: flex;
+  font-size: smaller;
+}
+
+// .actions-main-div {
+//   display: flex;
+//   justify-content: space-between;
+//   width: 100%;
+// }
+
+.actions-buttons-div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 55%;
+}
+
+
+@media (max-width: 850px) {
+  .actions-buttons-div > .matButton {
+    margin-top: 10px !important;
+  }
+}

@@ -1,32 +1,23 @@
+// mat-toolbar a {
+// color: whitesmoke;
+// }
 
-main {
-  margin: 30px;
-}
-
-mat-toolbar a {
-color: white;
-}
-
-.myheader {
-position: sticky;
-z-index: 9999;
-padding: 20px 0;
+.top-toolbar {
+  position: sticky;
+  z-index: 2;
+  padding: 20px 0;
 }
 
 .mat-mdc-snack-bar-container {
---mdc-snackbar-container-color: #16b51e;
---mat-mdc-snack-bar-button-color: #ffffff;
---mdc-snackbar-supporting-text-color: #fff !important;
---mat-snack-bar-button-color:  #fff;
-margin-right: 25px !important;
+  --mdc-snackbar-container-color: #16b51e;
+  --mat-mdc-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #fff !important;
+  --mat-snack-bar-button-color: #fff;
+  margin-right: 25px !important;
 }
 
 .mat-simple-snackbar {
-justify-content: center !important;
-}
-
-.matlistitem {
-  padding: 0px;
+  justify-content: center !important;
 }
 
 // ----------------- trial & error ------------------
@@ -47,17 +38,13 @@ justify-content: center !important;
 // }
 
 // ----------------- mat-drwaer ------------------
-.mat-drawer-inner-container{ overflow: hidden !important; }
 
-.example-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  // border: 1px solid rgba(0, 0, 0, 0.5);
+.center-sidenav-container {
+  // display: flex; // This is making card width smaller. why?
 }
 
-.example-sidenav-content {
-  height: 88vh;
+.main-card-content {
+  height: 88vh; // Why?
   // width: 100%;
   // align-items: flex-start;
 }

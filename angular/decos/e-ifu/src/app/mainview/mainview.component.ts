@@ -40,7 +40,7 @@ export class MainviewComponent implements AfterViewInit, OnDestroy  {
   //
   ngAfterViewInit() {
     this.observer
-      .observe(['(min-width: 800px)'])
+      .observe(['(min-width: 900px)'])
       .pipe(pluck('matches'), distinctUntilChanged())
       .subscribe((res) => {
         if(res) {

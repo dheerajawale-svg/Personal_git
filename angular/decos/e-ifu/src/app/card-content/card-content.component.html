@@ -1,7 +1,8 @@
 <mat-card class="product-card">
 
   <mat-card-header>
-    <div mat-card-avatar style="margin-top: 15px;">
+    <div mat-card-avatar
+         style="margin-top: 15px;">
       <mat-icon>star</mat-icon>
       <!-- <mat-icon >star_border</mat-icon> -->
     </div>
@@ -21,37 +22,37 @@
   </mat-card-header>
 
   <mat-card-content>
-    <span style="display: flex; font-size: smaller;">
-      <span style="display: flex; align-items: center;">
+    <div class="content-div">
+      <span class="card-content-outer-span">
         <mat-icon>bookmarks</mat-icon>
         Product family
       </span>
-      <span style="display: flex; align-items: center; margin-left: 10px;">
+      <span class="card-content-outer-span">
         <mat-icon>storage</mat-icon>
         554.62 KB
       </span>
-      <span style="display: flex; align-items: center; margin-left: 10px;">
+      <span class="card-content-outer-span">
         <mat-icon>calendar_month</mat-icon>
         03/26/2017
       </span>
-      <span style="display: flex; align-items: center; margin-left: 10px;">
+      <span class="card-content-outer-span">
         <mat-icon>public</mat-icon>
         English - English (UK)
       </span>
-    </span>
+    </div>
   </mat-card-content>
 
   <mat-card-actions style="margin-top: 25px;">
-    <div>
-      <button style="margin-left: 15px;" mat-raised-button>
+    <div class="actions-buttons-div">
+      <button mat-raised-button class="matButton">
         <mat-icon>print</mat-icon>
         Print
       </button>
-      <button style="margin-left: 15px;" mat-raised-button>
+      <button mat-raised-button  class="matButton">
         <mat-icon>share</mat-icon>
         Share
       </button>
-      <button style="margin-left: 15px;" mat-raised-button>
+      <button mat-raised-button  class="matButton">
         <mat-icon>download</mat-icon>
         Download
       </button>
@@ -63,19 +64,19 @@
   </mat-card-actions>
   <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false"
-                       [class.mat-elevation-z0]=true
-                       style="background-color: azure !important;">
-    <mat-expansion-panel-header>
-      <mat-panel-title style="justify-content: center;">
-        See Details
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-    <ng-template matExpansionPanelContent>
-      Some deferred content
-      <p>I'm visible because I am open</p>
-    </ng-template>
+                         (closed)="panelOpenState = false"
+                         [class.mat-elevation-z0]=true
+                         style="background-color: azure !important;">
+      <mat-expansion-panel-header>
+        <mat-panel-title style="justify-content: center;">
+          See Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        Some deferred content
+        <p>I'm visible because I am open</p>
+      </ng-template>
 
-  </mat-expansion-panel>
+    </mat-expansion-panel>
   </mat-accordion>
 </mat-card>

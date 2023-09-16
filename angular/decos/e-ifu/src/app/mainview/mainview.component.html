@@ -9,13 +9,12 @@
                opened>
 
     <mat-nav-list>
-      <a mat-list-item
-         class="matlistitem">
+      <a mat-list-item>
         <button mat-button
                 [disableRipple]="true"
                 style="justify-content: start;">
           <mat-icon>library_books</mat-icon>
-          <span *ngIf="showNavText">Courses</span>
+          <span *ngIf="showNavText">Catelog</span>
         </button>
       </a>
 
@@ -90,7 +89,7 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="myheader"
+    <mat-toolbar class="top-toolbar"
                  color="primary"
                  [class.mat-elevation-z8]=true>
 
@@ -109,7 +108,7 @@
       <mat-menu #dropdown>
 
         <button mat-menu-item
-                routerLink="/">Courses</button>
+                routerLink="/">Products</button>
 
         <button mat-menu-item
                 routerLink="/about">About</button>
@@ -118,19 +117,14 @@
 
 
       <a mat-button>
-        <mat-icon>person_add</mat-icon>
-        Register
-      </a>
-
-      <a mat-button>
         <mat-icon>account_circle</mat-icon>
         Login
       </a>
 
     </mat-toolbar>
 
-    <div style="overflow-y: auto;">
-      <mat-sidenav-container class="example-container">
+    <div class="center-sidenav-container">
+      <mat-sidenav-container>
         <mat-sidenav #drawer
                      mode="side"
                      opened="true">
@@ -138,7 +132,7 @@
                            (drawerClosedEvent)="toggle()"></app-filter-view>
         </mat-sidenav>
 
-        <div class="example-sidenav-content">
+        <div class="main-card-content">
           <button *ngIf="!isVisible"
                   mat-mini-fab
                   color="primary"

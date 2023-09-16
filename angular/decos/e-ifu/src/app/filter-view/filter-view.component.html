@@ -1,43 +1,51 @@
-<button *ngIf="isVisible" mat-mini-fab color="primary" (click)="close()"
+<button *ngIf="isVisible"
+        mat-mini-fab
+        color="primary"
+        (click)="close()"
         [class.mat-elevation-z8]=true
         style="position: absolute !important; right: 8px; top: 5px; z-index: 1; height: 32px; width:  32px; background-color: gray;">
-  <mat-icon >close</mat-icon>
+  <mat-icon>close</mat-icon>
 </button>
 <mat-accordion>
-  <mat-expansion-panel expanded="true" [class.mat-elevation-z0]=true style="background-color: azure !important;">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Product Family
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <ng-template matExpansionPanelContent>
-    <mat-radio-group aria-labelledby="example-radio-group-label"
-                    class="example-radio-group"
-                    [(ngModel)]="favoriteSeason">
-      <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-        {{season}}
-      </mat-radio-button>
-    </mat-radio-group>
-  </ng-template>
+  <mat-expansion-panel expanded="true"
+                       [class.mat-elevation-z0]=true
+                       style="background-color: azure !important;">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Product Family
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <mat-radio-group aria-labelledby="example-radio-group-label"
+                       class="example-radio-group"
+                       [(ngModel)]="favoriteSeason">
+        <mat-radio-button class="example-radio-button"
+                          *ngFor="let season of seasons"
+                          [value]="season">
+          {{season}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </ng-template>
 
-</mat-expansion-panel>
-<mat-expansion-panel [class.mat-elevation-z0]=true style="background-color: azure !important;">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Product Category
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  <ng-template matExpansionPanelContent>
-    <mat-radio-group aria-labelledby="example-radio-group-label"
-                    class="example-radio-group"
-                    [(ngModel)]="favoriteSeason">
-  <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-    {{season}}
-  </mat-radio-button>
-</mat-radio-group>
-<div>Your favorite season is: {{favoriteSeason}}</div>
-  </ng-template>
+  </mat-expansion-panel>
+  <mat-expansion-panel [class.mat-elevation-z0]=true
+                       style="background-color: azure !important;">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Product Category
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <mat-radio-group aria-labelledby="example-radio-group-label"
+                       class="example-radio-group"
+                       [(ngModel)]="favoriteSeason">
+        <mat-radio-button class="example-radio-button"
+                          *ngFor="let season of seasons"
+                          [value]="season">
+          {{season}}
+        </mat-radio-button>
+      </mat-radio-group>
+    </ng-template>
 
-</mat-expansion-panel>
+  </mat-expansion-panel>
 </mat-accordion>
-

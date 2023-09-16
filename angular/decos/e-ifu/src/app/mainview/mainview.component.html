@@ -117,20 +117,21 @@
     </mat-toolbar>
 
     <div style="overflow-y: auto;">
-      <mat-drawer-container class="example-container">
-        <mat-drawer #drawer class="example-sidenav" mode="side" opened="true">
+      <mat-sidenav-container class="example-container">
+        <mat-sidenav #drawer mode="side" opened="true">
           <app-filter-view [isVisible]="isVisible" (drawerClosedEvent)="toggle()"></app-filter-view>
-        </mat-drawer>
+        </mat-sidenav>
 
         <div class="example-sidenav-content">
           <button *ngIf="!isVisible" mat-mini-fab color="primary" (click)="toggle()" style="margin-left: 5px; margin-top: 5px;">
             <mat-icon>menu</mat-icon>
           </button>
           <app-card-content></app-card-content>
+          <app-card-content></app-card-content>
+          <app-card-content></app-card-content>
+          <app-card-content></app-card-content>
         </div>
-
-
-      </mat-drawer-container>
+      </mat-sidenav-container>
     </div>
 
   </mat-sidenav-content>

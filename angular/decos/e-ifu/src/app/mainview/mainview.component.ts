@@ -44,14 +44,14 @@ export class MainviewComponent implements AfterViewInit, OnDestroy  {
       .pipe(pluck('matches'), distinctUntilChanged())
       .subscribe((res) => {
         if(res) {
-          this.isVisible = !this.isVisible;
+          this.isVisible = true;
           this.matDrawer.open();
           this.matDrawer.mode = "side";
         }
         else {
           this.matDrawer.mode = "over";
           this.matDrawer.close();
-          this.isVisible = !this.isVisible;
+          this.isVisible = false;
         }
       });
   }

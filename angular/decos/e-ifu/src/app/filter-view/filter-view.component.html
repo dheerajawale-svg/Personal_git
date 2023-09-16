@@ -1,10 +1,10 @@
 <button *ngIf="isVisible" mat-mini-fab color="primary" (click)="close()"
         [class.mat-elevation-z8]=true
-        style="position: absolute !important; right: 8px; bottom: 8px; z-index: 1; height: 32px; width:  32px; background-color: gray;">
+        style="position: absolute !important; right: 8px; top: 5px; z-index: 1; height: 32px; width:  32px; background-color: gray;">
   <mat-icon >close</mat-icon>
 </button>
 <mat-accordion>
-  <mat-expansion-panel expanded="true" [class.mat-elevation-z0]=true>
+  <mat-expansion-panel expanded="true" [class.mat-elevation-z0]=true style="background-color: azure !important;">
   <mat-expansion-panel-header>
     <mat-panel-title>
       Product Family

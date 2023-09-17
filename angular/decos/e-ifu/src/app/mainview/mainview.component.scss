@@ -8,6 +8,31 @@
   padding: 20px 0;
 }
 
+.toolbar-div {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // width: 100%;
+}
+
+.toolbar-screens {
+  // font-size: small;
+  padding: 0px 10px;
+  // margin-top: -15px;
+  // border-left: 3px solid transparent;
+  // border-right: 3px solid transparent;
+  border-top: 3px solid transparent;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.toolbar-screens:hover {
+  cursor: pointer;
+  // border-left: 3px solid #11122b;
+  // border-right: 3px solid #11122b;
+  border-top: 3px solid #11122b;
+}
+
 .mat-mdc-snack-bar-container {
   --mdc-snackbar-container-color: #16b51e;
   --mat-mdc-snack-bar-button-color: #ffffff;
@@ -52,3 +77,14 @@
 .inner-sidenav {
   position: fixed !important;
 }
+
+
+// .close-animate:hover {
+//   animation: icon-move 2s;
+//   background-color: coral;
+//   transition: 05s;
+// }
+
+// @keyframes icon-move {
+//   50% {transform: rotate(45deg);}
+// }

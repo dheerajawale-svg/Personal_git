@@ -97,10 +97,10 @@
               (click)="sidenav.toggle()"
               style="margin-left: -10px;">
         <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-        <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+        <mat-icon *ngIf="sidenav.opened" class="close-animate">close</mat-icon>
       </button>
 
-      <a mat-button
+      <a class="test1" matRipple
          [matMenuTriggerFor]="dropdown">
         Screens
       </a>
@@ -114,12 +114,6 @@
                 routerLink="/about">About</button>
 
       </mat-menu>
-
-
-      <a mat-button>
-        <mat-icon>account_circle</mat-icon>
-        Login
-      </a>
 
     </mat-toolbar>
 
@@ -137,8 +131,8 @@
                   mat-mini-fab
                   color="primary"
                   (click)="toggle()"
-                  style="margin-left: 5px; margin-top: 5px;">
-            <mat-icon>menu</mat-icon>
+                  style="background-color: gray; position: absolute !important; top: 3px; z-index: 1; height: 32px; width:  32px;">
+            <mat-icon>chevron_right</mat-icon>
           </button>
           <app-card-content></app-card-content>
           <app-card-content></app-card-content>

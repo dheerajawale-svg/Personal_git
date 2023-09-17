@@ -3,13 +3,15 @@ import { AfterViewInit, Component, OnDestroy, SimpleChanges, ViewChild, ViewEnca
 import { NavigationEnd, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { delay, distinctUntilChanged, filter, pluck } from 'rxjs';
+import { MatRippleModule } from '@angular/material/core';
 
 @UntilDestroy()
 @Component({
   selector: 'app-mainview',
   templateUrl: './mainview.component.html',
   styleUrls: ['./mainview.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+
 })
 export class MainviewComponent implements AfterViewInit, OnDestroy  {
   showFiller = false;

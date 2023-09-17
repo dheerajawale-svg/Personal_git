@@ -8,3 +8,12 @@
 .example-radio-button {
   margin: 5px;
 }
+
+.mat-expansion-panel {
+  margin-top: 15px;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:first-child, .mat-accordion>*:first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-top: 15px;
+  margin-bottom: 0px;
+}

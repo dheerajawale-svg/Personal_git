@@ -3,12 +3,11 @@
         color="primary"
         (click)="close()"
         [class.mat-elevation-z8]=true
-        style="position: absolute !important; right: 8px; top: 5px; z-index: 1; height: 32px; width:  32px; background-color: gray;">
+        style="position: absolute !important; right: 5px; top: 5px; z-index: 1; height: 32px; width:  32px; background-color: gray;">
   <mat-icon>chevron_left</mat-icon>
 </button>
 <mat-accordion>
   <mat-expansion-panel expanded="true"
-                       [class.mat-elevation-z0]=true
                        style="background-color: azure !important;">
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -28,7 +27,7 @@
     </ng-template>
 
   </mat-expansion-panel>
-  <mat-expansion-panel [class.mat-elevation-z0]=true
+  <mat-expansion-panel
                        style="background-color: azure !important;">
     <mat-expansion-panel-header>
       <mat-panel-title>

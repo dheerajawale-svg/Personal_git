@@ -11,6 +11,10 @@
   margin-left: 8px;
 }
 
+mat-card-title-group.mat-mdc-card-title-group {
+  flex-wrap: wrap;
+}
+
 .content-div {
   display: flex;
   justify-content: flex-start;

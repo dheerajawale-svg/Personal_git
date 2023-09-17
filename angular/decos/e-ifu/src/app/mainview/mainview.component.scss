@@ -33,6 +33,20 @@
   border-top: 3px solid #11122b;
 }
 
+.sidenav-items-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sidenav-item {
+  margin-left: 15px;
+}
+
+.icon-border {
+  border-style: none;
+}
+
+
 .mat-mdc-snack-bar-container {
   --mdc-snackbar-container-color: #16b51e;
   --mat-mdc-snack-bar-button-color: #ffffff;
@@ -64,9 +78,6 @@
 
 // ----------------- mat-drwaer ------------------
 
-.center-sidenav-container {
-  // display: flex; // This is making card width smaller. why?
-}
 
 .main-card-content {
   height: 88vh; // Why?
@@ -77,14 +88,3 @@
 .inner-sidenav {
   position: fixed !important;
 }
-
-
-// .close-animate:hover {
-//   animation: icon-move 2s;
-//   background-color: coral;
-//   transition: 05s;
-// }
-
-// @keyframes icon-move {
-//   50% {transform: rotate(45deg);}
-// }

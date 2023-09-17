@@ -26,7 +26,7 @@ export class MainviewComponent implements AfterViewInit, OnDestroy  {
 
   increase() {
     this.showNavText = true;
-    this.sidenavWidth = 12;
+    this.sidenavWidth = 15;
   }
   decrease() {
     this.showNavText = false;

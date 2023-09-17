@@ -8,6 +8,11 @@
   padding: 20px 0;
 }
 
+.mat-toolbar.mat-primary {
+  background: #008c9a;
+  color: #fff;
+}
+
 .toolbar-div {
   // display: flex;
   // justify-content: space-between;
@@ -31,6 +36,14 @@
   // border-left: 3px solid #11122b;
   // border-right: 3px solid #11122b;
   border-top: 3px solid #11122b;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo-image:hover {
+  filter: brightness(90%);
 }
 
 .sidenav-items-wrapper {

@@ -37,6 +37,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatRippleModule } from '@angular/material/core';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
@@ -98,6 +99,7 @@ const routes: Routes = [
     MatButtonToggleModule,
     MatExpansionModule,
     MatRippleModule,
+    MatProgressBarModule,
 
     FormsModule,
     ReactiveFormsModule,

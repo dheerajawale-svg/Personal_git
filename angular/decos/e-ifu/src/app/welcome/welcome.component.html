@@ -1,67 +1,88 @@
-<!-- <div fxFlexAlign="stretch">Hello</div> -->
-<!-- <app-theme-switch></app-theme-switch> -->
+<mat-toolbar color="primary">
+  <button mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span style="margin-left: 10px;">e-ifu</span>
+  <span class="example-spacer"></span>
+  <img class="logo-image"
+       width="100px"
+       src="/assets/logo-white.png"
+       alt="natus logo">
+</mat-toolbar>
 <div style="overflow-y: auto;">
-  <div class="topdiv">
-    <img mat-card-image src="/assets/natus-logo.png" style="height: 40px;" alt="natus logo">
-  </div>
-
   <div style="padding: 10px 25px 0px 25px;">
     <div class="maindiv">
-      <mat-card class="course-card mat-elevation-z8" fxFlexAlign="stretch" >
+      <mat-card class="course-card mat-elevation-z8"
+                fxFlexAlign="stretch">
         <mat-card-header>
-          <mat-card-title>Welcome to natus</mat-card-title>
-          <mat-card-subtitle>The e-IFU website provides you with Instructions For Use from Natus</mat-card-subtitle>
+          <mat-card-title-group>
+            <mat-card-title>Welcome to natus</mat-card-title>
+            <mat-card-subtitle>The e-IFU website provides you with Instructions For Use from Natus</mat-card-subtitle>
+          </mat-card-title-group>
         </mat-card-header>
+
         <mat-card-content>
-          <div class="container" style="margin: 2em;">
-            <div class="row">
-              <div class="col-xs-12">
-                <form [formGroup]="consentForm" (ngSubmit)="onNgSubmit()">
-                    <div class="row">
-                      <mat-form-field appearance="outline" subscriptSizing='dynamic'>
-                        <mat-label>Email</mat-label>
-                        <input type="text" matInput formControlName="email">
-                        <mat-error *ngIf="consentForm.controls['email'].hasError('required')">
-                          E-mail is required
-                        </mat-error>
-                        <mat-error *ngIf="consentForm.controls['email'].hasError('email')">
-                          Enter a valid e-mail
-                        </mat-error>
-                        <!-- <mat-hint>Hint*</mat-hint> -->
-                      </mat-form-field>
-                      <mat-checkbox formControlName="checked"
-                                    style="margin-bottom: 10px; margin-left: 15px;"
-                                    (change)="boxChanged($event.checked)"
-                                    labelPosition="before">Opt out of email</mat-checkbox>
-                    </div>
-
-
-
-                    <div class="row">
-                        <mat-radio-group class="rgroup" aria-label="Select an option"
-                          (change)="radioSelected($event)" formControlName="purpose">
-                          <div class="radio-border">
-                            <mat-radio-button value="Professional">I am a Healthcare Professional</mat-radio-button>
-                          </div>
-                          <div class="radio-border">
-                            <mat-radio-button value="Patient">I am a Patient</mat-radio-button>
-                          </div>
-                        </mat-radio-group>
-                    </div>
-
-                  <div class="row submitrow">
-                    <button mat-raised-button color="primary" type="submit" >Continue</button>
-                  </div>
-
-                </form>
+          <div class="container">
+            <form [formGroup]="consentForm"
+                  id="consentFormCtrl"
+                  (ngSubmit)="onNgSubmit()">
+              <div>
+                <mat-form-field appearance="outline"
+                                subscriptSizing='dynamic'>
+                  <mat-label>Email</mat-label>
+                  <input type="text"
+                         matInput
+                         formControlName="email">
+                  <mat-error *ngIf="consentForm.controls['email'].hasError('required')">
+                    E-mail is required
+                  </mat-error>
+                  <mat-error *ngIf="consentForm.controls['email'].hasError('email')">
+                    Enter a valid e-mail
+                  </mat-error>
+                  <!-- <mat-hint>Hint*</mat-hint> -->
+                </mat-form-field>
+                <mat-checkbox formControlName="checked"
+                              style="margin-bottom: 10px; margin-left: 15px;"
+                              (change)="boxChanged($event.checked)"
+                              labelPosition="before">Opt out of email</mat-checkbox>
               </div>
 
-            </div>
+              <div>
+                <mat-radio-group class="rgroup"
+                                 aria-label="Select an option"
+                                 (change)="radioSelected($event)"
+                                 formControlName="purpose">
+                  <div class="radio-border">
+                    <mat-radio-button value="Professional">I am a Healthcare Professional</mat-radio-button>
+                  </div>
+                  <div class="radio-border">
+                    <mat-radio-button value="Patient">I am a Patient</mat-radio-button>
+                  </div>
+                </mat-radio-group>
+              </div>
+            </form>
           </div>
         </mat-card-content>
+
+        <mat-card-actions align="end" style="margin: 0px 15px 15px 15px;">
+          <img src="/assets/natus-logo.png"
+               style="width: 100px;"
+               alt="natus logo">
+          <span class="example-spacer"></span>
+          <div class="action-submit">
+            <button mat-raised-button form="consentFormCtrl"
+                    color="primary" (click)="onNgSubmit()">Continue</button>
+          </div>
+        </mat-card-actions>
+
+        <!-- <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer> -->
+
       </mat-card>
     </div>
   </div>
 
 </div>
-

@@ -1,3 +1,12 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  background: #008c9a;
+  color: #fff;
+}
+
 .course-card {
   margin: 20px 10px;
   width: fit-content;
@@ -5,6 +14,10 @@
 
 .top-row {
   padding: 1em 0;
+}
+
+.container {
+  margin: 2em;
 }
 
 mat-form-field {
@@ -50,10 +63,8 @@ h1 {
   border: 1px solid #19cfd2;
 }
 
-.submitrow {
-  display: flex;
-  margin-top: 5em;
-  justify-content: center;
+.action-submit {
+  align-items: center;
 }
 
 .mat-mdc-snack-bar-container {

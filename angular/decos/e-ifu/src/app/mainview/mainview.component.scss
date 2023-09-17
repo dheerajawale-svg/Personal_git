@@ -93,11 +93,26 @@
 
 
 .main-card-content {
-  height: 88vh; // Why?
+  height: calc(100vh - var(--mat-toolbar-standard-height));
+  // height: 88vh; // Why?
   // width: 100%;
   // align-items: flex-start;
 }
 
 .inner-sidenav {
   position: fixed !important;
+}
+
+.card-list-container {
+  padding-bottom: 5px;
+}
+
+.close-animate {
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+
+.close-animate:hover {
+  transform: rotate(90deg);
+  // transition: 0.5s;
 }

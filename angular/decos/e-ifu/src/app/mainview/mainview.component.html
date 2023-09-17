@@ -125,11 +125,10 @@
                  [class.mat-elevation-z8]=true>
 
       <button mat-icon-button
-              (click)="sidenav.toggle()"
-              style="margin-left: -10px;">
+              class="close-animate"
+              (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-        <mat-icon *ngIf="sidenav.opened"
-                  class="close-animate">close</mat-icon>
+        <mat-icon *ngIf="sidenav.opened">close</mat-icon>
       </button>
 
       <a class="toolbar-screens"
@@ -174,10 +173,12 @@
                   style="background-color: gray; position: absolute !important; top: 3px; z-index: 1; height: 32px; width:  32px;">
             <mat-icon>chevron_right</mat-icon>
           </button>
-          <app-card-content></app-card-content>
-          <app-card-content></app-card-content>
-          <app-card-content></app-card-content>
-          <app-card-content></app-card-content>
+          <div class="card-list-container">
+            <app-card-content></app-card-content>
+            <app-card-content></app-card-content>
+            <app-card-content></app-card-content>
+            <app-card-content></app-card-content>
+          </div>
         </div>
       </mat-sidenav-container>
     </div>

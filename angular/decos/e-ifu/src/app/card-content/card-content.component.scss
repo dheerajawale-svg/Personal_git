@@ -8,48 +8,6 @@
   width: 100% !important;
 }
 
-.mat-mdc-form-field + .mat-mdc-form-field {
-  margin-left: 8px;
-}
-
-mat-card-title-group.mat-mdc-card-title-group {
-  flex-wrap: wrap;
-}
-
-.content-div {
-  display: flex;
-  width: 55%;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.card-content-outer-span {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.card-content-inner-span {
-  display: flex;
-  font-size: smaller;
-}
-
-// .actions-main-div {
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-// }
-
-.actions-buttons-div {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  width: 55%;
-}
-
-.header-icon-div {
-  margin-top: 5px; margin-right: 5px;
-}
 
 .header-icon-div .favColor-active {
   color: orange;
@@ -67,6 +25,30 @@ span:hover mat-icon {
 mat-icon:hover {
   color: #008c9a;
   cursor: pointer;
+}
+
+.content-div {
+  display: flex;
+  width: 55%;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.content-div span {
+  display: flex;
+  align-items: center;
+}
+
+.actions-buttons-div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 55%;
+}
+
+.header-icon-div {
+  margin-top: 5px; margin-right: 5px;
 }
 
 @media (max-width: 850px) {

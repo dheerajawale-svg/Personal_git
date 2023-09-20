@@ -52,7 +52,12 @@ mat-icon:hover {
 }
 
 @media (max-width: 850px) {
-  .actions-buttons-div > .matButton {
-    margin-top: 10px !important;
+  .actions-buttons-div > button {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
   }
+  // .actions-buttons-div {
+  //   padding-top: 10px !important;
+  //   padding-bottom: 10px !important;
+  // }
 }

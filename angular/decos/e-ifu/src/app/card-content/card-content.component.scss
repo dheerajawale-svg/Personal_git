@@ -47,6 +47,27 @@ mat-card-title-group.mat-mdc-card-title-group {
   width: 55%;
 }
 
+.header-icon-div {
+  margin-top: 5px; margin-right: 5px;
+}
+
+.header-icon-div .favColor-active {
+  color: orange;
+  // border: 1px solid black;
+}
+
+.header-icon-div mat-icon:hover {
+  color: orange;
+}
+
+span:hover mat-icon {
+  color: #008c9a;
+}
+
+mat-icon:hover {
+  color: #008c9a;
+  cursor: pointer;
+}
 
 @media (max-width: 850px) {
   .actions-buttons-div > .matButton {

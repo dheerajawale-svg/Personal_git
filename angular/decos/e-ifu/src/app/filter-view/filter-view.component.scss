@@ -17,3 +17,11 @@
   margin-top: 15px;
   margin-bottom: 0px;
 }
+
+.floating-icon {
+  position: absolute !important;
+  right: 5px; top: 5px;
+  z-index: 1;
+  height: 32px; width: 32px;
+  background-color: gray; opacity: 0.5;
+}

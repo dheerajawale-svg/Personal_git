@@ -1,80 +1,70 @@
 <mat-card class="product-card">
+<div class="card-content-main">
 
-  <mat-card-header>
-    <div class="header-icon-div">
-      <mat-icon (click)="favIconClicked()"
-                [ngClass]="favIcon">grade</mat-icon>
-    </div>
-    <mat-card-title-group>
-      <mat-card-title>Otosuite Otometrics All Modalities</mat-card-title>
-      <mat-card-subtitle>Desktop Application</mat-card-subtitle>
-      <mat-form-field appearance="outline">
-        <mat-label>Version</mat-label>
-        <mat-select [(value)]="selected">
-          <mat-option>None</mat-option>
-          <mat-option value="option1">1.1</mat-option>
-          <mat-option value="option2">1.2</mat-option>
-          <mat-option value="option3">2</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-title-group>
-  </mat-card-header>
+    <mat-card-header>
+      <div class="header-icon-div">
+        <mat-icon (click)="favIconClicked()"
+                  [ngClass]="favIcon">grade</mat-icon>
+      </div>
+      <mat-card-title-group>
+        <mat-card-title>Otosuite Otometrics All Modalities</mat-card-title>
+        <mat-card-subtitle>Desktop Application</mat-card-subtitle>
+        <mat-form-field appearance="outline">
+          <mat-label>Version</mat-label>
+          <mat-select [(value)]="selected">
+            <mat-option>None</mat-option>
+            <mat-option value="option1">1.1</mat-option>
+            <mat-option value="option2">1.2</mat-option>
+            <mat-option value="option3">2</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-title-group>
+    </mat-card-header>
 
-  <mat-card-content>
-    <div class="content-div">
-      <span>
-        <mat-icon>bookmarks</mat-icon>
-        Product family
-      </span>
-      <span>
-        <mat-icon>storage</mat-icon>
-        554.62 KB
-      </span>
-      <span>
-        <mat-icon>calendar_month</mat-icon>
-        03/26/2017
-      </span>
-      <span>
-        <mat-icon>public</mat-icon>
-        English - English (UK)
-      </span>
-    </div>
-  </mat-card-content>
+    <mat-card-content>
+      <div class="content-div">
+        <span>
+          <mat-icon>bookmarks</mat-icon>
+          Product family
+        </span>
+        <span>
+          <mat-icon>storage</mat-icon>
+          554.62 KB
+        </span>
+        <span>
+          <mat-icon>calendar_month</mat-icon>
+          03/26/2017
+        </span>
+        <span>
+          <mat-icon>public</mat-icon>
+          English - English (UK)
+        </span>
+      </div>
+    </mat-card-content>
 
-  <mat-card-actions style="margin-top: 25px;">
-    <div class="actions-buttons-div">
-      <button mat-raised-button>
-        <mat-icon>print</mat-icon>
-        Print
+    <mat-card-actions style="margin-top: 25px;">
+      <div class="actions-buttons-div">
+        <button mat-raised-button>
+          <mat-icon>print</mat-icon>
+          Print
+        </button>
+        <button mat-raised-button>
+          <mat-icon>share</mat-icon>
+          Share
+        </button>
+        <button mat-raised-button>
+          <mat-icon>download</mat-icon>
+          Download
+        </button>
+      </div>
+      <button mat-button style="position: absolute; right: 5px; bottom: 6px;" (click)="panelH._toggle()">
+        <mat-icon>info</mat-icon>
+        See Details
       </button>
-      <button mat-raised-button>
-        <mat-icon>share</mat-icon>
-        Share
-      </button>
-      <button mat-raised-button>
-        <mat-icon>download</mat-icon>
-        Download
-      </button>
-    </div>
-    <button mat-button style="position: absolute; right: 5px; bottom: 6px;" (click)="panelH._toggle()">
-      <mat-icon>info</mat-icon>
-      See Details
-    </button>
-  </mat-card-actions>
+    </mat-card-actions>
+</div>
+
   <mat-accordion>
-    <!-- <mat-expansion-panel>
-      <mat-expansion-panel-header #panelH
-                                  (click)="panelH._toggle()">
-        <mat-panel-title>
-          <i class="material-icons app-toolbar-menu"
-             (click)="panelH._toggle()">menu </i>
-        </mat-panel-title>
-        <mat-panel-description>
-
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel> -->
-
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false"
                          hideToggle

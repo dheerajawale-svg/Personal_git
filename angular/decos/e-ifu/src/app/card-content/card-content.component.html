@@ -59,16 +59,17 @@
       </div>
       <button mat-button style="position: absolute; right: 5px; bottom: 6px;" (click)="panelH._toggle()">
         <mat-icon>info</mat-icon>
-        See Details
+        <span *ngIf="mep.expanded == false">See Details</span>
+        <span *ngIf="mep.expanded">Hide Details</span>
       </button>
     </mat-card-actions>
 </div>
 
   <mat-accordion>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false"
+    <mat-expansion-panel
                          hideToggle
                          [class.mat-elevation-z0]=true
+                         #mep="matExpansionPanel"
                          style="background-color: azure !important;">
       <mat-expansion-panel-header #panelH
                                   (click)="panelH._toggle()"

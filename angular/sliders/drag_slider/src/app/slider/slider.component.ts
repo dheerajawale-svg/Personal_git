@@ -12,6 +12,8 @@ export class SliderComponent implements AfterContentInit {
 
   private slidesIndex = 0;
 
+  interval: any;
+
   get currentItem(): ElementRef<HTMLDivElement> {
     return this.items.find((item, index) => index === this.slidesIndex)!;
   }
@@ -22,23 +24,49 @@ export class SliderComponent implements AfterContentInit {
 
   ngAfterViewInit() {
     console.log('slides', this.slidesContainer);
+    this.startTimer();
   }
 
-  onClickLeft() {
+  startTimer() {
+    this.interval = setInterval(() => {
+      this.onClickRight(true);
+    },3000)
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
+  onClickLeft(fromTimer?: boolean) {
+
+    if(!fromTimer) {
+      this.pauseTimer();
+    }
+
     this.slidesContainer.nativeElement.scrollLeft -= this.currentItem.nativeElement.offsetWidth;
 
     if (this.slidesIndex > 0) {
       this.slidesIndex--;
     }
+    else {
+      this.onClickRight();
+    }
   }
 
-  onClickRight() {
+  onClickRight(fromTimer?: boolean) {
+
+    if(!fromTimer) {
+      this.pauseTimer();
+    }
+
     this.slidesContainer.nativeElement.scrollLeft += this.currentItem.nativeElement.offsetWidth;
 
     if (this.slidesIndex < this.items.length - 1) {
       this.slidesIndex++
     }
+    else {
+      this.onClickLeft();
+    }
   }
-
 
 }

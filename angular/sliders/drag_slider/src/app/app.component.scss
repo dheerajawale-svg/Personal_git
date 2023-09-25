@@ -1,37 +1,48 @@
+// :root {
+//   --contentwidth: 1200px;
+// }
+
+$contentwidth: 900px;
+
 .parent-container {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
 }
 
 .main-div {
-  max-width: 400px;
+  width: 100%;
+  max-width: $contentwidth;
   justify-content: center;
-}
-
-p {
-  font-family: Lato;
-}
-
-.example-card {
-  max-width: 400px;
 }
 
 [appSliderItem] {
   flex-shrink: 0;
 }
 
-.shiba-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.panel {
+  width: $contentwidth;
+  height: 75vh;
+
+  h3 {
+    font-size: 24px;
+    text-align: center;
+  }
 }
 
-.akita-header-image {
-  background-image: url('https://cdn1-www.dogtime.com/assets/uploads/gallery/akita-dogs-and-puppies/akita-dogs-puppies-4.jpg');
-  background-size: cover;
-}
+// .panel h3 {
+//   font-size: 24px;
+//   position: absolute;
+//   bottom: 20px;
+//   left: 20px;
+//   margin: 0;
+//   opacity: 0;
+// }
 
-
-.chow-chow-header-image {
-  background-image: url('https://cdn1-www.dogtime.com/assets/uploads/gallery/chow-chow-dog-breed-pictures/2-laying.jpg');
-  background-size: cover;
-}
+// .panel.active h3 {
+//   opacity: 1;
+//   transition: opacity 0.3s ease-in 0.4s;
+// }

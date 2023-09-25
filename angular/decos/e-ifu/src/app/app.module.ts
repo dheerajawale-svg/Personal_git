@@ -47,6 +47,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainviewComponent } from './mainview/mainview.component';
 import { CardContentComponent } from './card-content/card-content.component';
 import { FilterViewComponent } from './filter-view/filter-view.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 
 const routes: Routes = [
@@ -62,7 +63,8 @@ const routes: Routes = [
     WelcomeComponent,
     MainviewComponent,
     CardContentComponent,
-    FilterViewComponent
+    FilterViewComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,10 @@
-<p>snack-bar works!</p>
+
+
+<div class="snack-border">
+  <div style="text-align: center;">{{data?.message}}</div>
+  <button mat-flat-button (click)="onAction()">{{data.action}}</button>
+</div>
+
+<div class="progrssbar-div">
+  <mat-progress-bar mode="determinate" [value]="value" ></mat-progress-bar>
+</div>

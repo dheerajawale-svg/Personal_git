@@ -33,41 +33,43 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-shadow: 0 4px 5px -2px #0003, 0 7px 10px 1px #00000024, 0 2px 16px 1px #0000001f;
 }
 
+//---------------------------- Theming ------------------------------
+
 $dark-primary-text: rgba(black, 0.87);
 
 $light-primary-text: white;
 
 $mat-primary: (
-        50: #e8eaf6,
-        100: #c5cae9,
-        200: #9fa8da,
-        300: #7986cb,
-        400: #5c6bc0,
-        500: #3f51b5,
-        600: #3949ab,
-        700: #303f9f,
-        800: #283593,
-        900: #1a237e,
-        A100: #8c9eff,
-        A200: #536dfe,
-        A400: #3d5afe,
-        A700: #304ffe,
-        contrast: (
-                50: $dark-primary-text,
-                100: $dark-primary-text,
-                200: $dark-primary-text,
-                300: $light-primary-text,
-                400: $light-primary-text,
-                500: $light-primary-text,
-                600: $light-primary-text,
-                700: $light-primary-text,
-                800: $light-primary-text,
-                900: $light-primary-text,
-                A100: $dark-primary-text,
-                A200: $light-primary-text,
-                A400: $light-primary-text,
-                A700: $light-primary-text,
-        )
+  50 : #e0f1f3,
+  100 : #b3dde1,
+  200 : #80c6cd,
+  300 : #4dafb8,
+  400 : #269da9,
+  500 : #008c9a,
+  600 : #008492,
+  700 : #007988,
+  800 : #006f7e,
+  900 : #005c6c,
+  A100 : #9cedff,
+  A200 : #69e3ff,
+  A400 : #36daff,
+  A700 : #1cd6ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
 );
 
 $mat-accent: (

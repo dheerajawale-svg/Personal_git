@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { SnackbarService } from '../snack-bar/snackbar.service';
 
 @Component({
   selector: 'app-card-content',
@@ -16,22 +17,24 @@ export class CardContentComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private _snackBar: MatSnackBar) {}
+  constructor(private _snackBarService: SnackbarService) {}
 
   onDownload() {
 
-    let snackBarRef = this._snackBar.open('Download Started', 'OK', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition
-    });
+    this._snackBarService.openCustomSnackBar("New test Message", "Ok");
 
-    snackBarRef.onAction().subscribe(() => {
-      console.log('The snackbar action was triggered!');
-    });
+    // let snackBarRef = this._snackBar.open('Download Started', 'OK', {
+    //   horizontalPosition: this.horizontalPosition,
+    //   verticalPosition: this.verticalPosition
+    // });
 
-    snackBarRef.afterDismissed().subscribe(() => {
-      console.log('The snackbar was dismissed');
-    });
+    // snackBarRef.onAction().subscribe(() => {
+    //   console.log('The snackbar action was triggered!');
+    // });
+
+    // snackBarRef.afterDismissed().subscribe(() => {
+    //   console.log('The snackbar was dismissed');
+    // });
 
   }
 

@@ -7,9 +7,24 @@
   color: #fff;
 }
 
+.outer-div {
+  height: 100%;
+  // box-shadow: 3px 3px 4px 0px rgba(0,0,0,0.58);
+  box-shadow: inset 5px 7px 5px 0px rgba(0,0,0,0.75);
+}
+
+.maindiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 15px;
+  padding: 10px 25px 0px 25px;
+}
+
 .course-card {
-  margin: 20px 10px;
+  margin: 50px 10px;
   width: fit-content;
+  box-shadow: 10px 10px 65px 0px rgba(0,0,0,0.75);
 }
 
 .top-row {
@@ -20,15 +35,14 @@
   margin: 2em;
 }
 
-mat-form-field {
+.email-div {
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
-.maindiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5px;
+mat-form-field {
+  width: 100%;
 }
 
 .topdiv {
@@ -47,16 +61,13 @@ h1 {
 // }
 
 .radio-border {
-  display: flex;
-  justify-content: flex-end;
   border: 1px solid #000;
   border-radius: 75px 75px;
   padding-left: -2px;
   padding-right: 10px;
-  text-align: center;
-  width: fit-content;
-  height: fit-content;
   margin: 5px 0;
+  text-align: center;
+  width: max-content;
 }
 
 .radio-border:hover {

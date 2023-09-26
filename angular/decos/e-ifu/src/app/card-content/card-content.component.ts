@@ -21,7 +21,7 @@ export class CardContentComponent {
 
   onDownload() {
 
-    this._snackBarService.openCustomSnackBar("New test Message", "Ok");
+    this._snackBarService.openCustomSnackBar("Starting Download...", "Ok");
 
     // let snackBarRef = this._snackBar.open('Download Started', 'OK', {
     //   horizontalPosition: this.horizontalPosition,
@@ -36,6 +36,10 @@ export class CardContentComponent {
     //   console.log('The snackbar was dismissed');
     // });
 
+  }
+
+  onShare() {
+    this._snackBarService.openSnackBar("Share started...")
   }
 
   favIconClicked() {

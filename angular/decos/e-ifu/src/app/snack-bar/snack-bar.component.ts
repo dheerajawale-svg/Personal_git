@@ -10,7 +10,9 @@ import { delay, interval, map, startWith } from 'rxjs';
 })
 export class SnackBarComponent implements AfterViewInit {
   value = 100;
+
   @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
+
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data:any) {
 
   }
@@ -18,8 +20,8 @@ export class SnackBarComponent implements AfterViewInit {
   curSec: number = 0;
 
   startTimer(seconds: number) {
-    const time = seconds;
-    const timer$ = interval(60);
+    const intervalPeriod = 60;
+    const timer$ = interval(intervalPeriod);
 
     const sub = timer$.subscribe((sec) => {
       this.value = 100 - sec * 100 / seconds;
@@ -28,21 +30,15 @@ export class SnackBarComponent implements AfterViewInit {
       // console.log('value: %d', this.value);
       // console.log('curSec: %d', this.curSec);
 
-      if (this.curSec === seconds) {
+      if (this.curSec === intervalPeriod) {
         sub.unsubscribe();
-      }
-
-      if(this.value === 0) {
-        // this.onAction();
+        this.data.snackBar.dismiss();
       }
     });
   }
 
   ngAfterViewInit() {
-    this.startTimer(40);
-    // this.progressBar.animationEnd.pipe(
-    //   map(() => this.onAction())
-    // );
+    this.startTimer(55);
   }
 
   onAction() {

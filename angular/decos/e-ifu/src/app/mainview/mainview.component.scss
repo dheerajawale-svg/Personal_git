@@ -64,14 +64,19 @@
 }
 
 //----------------------------- SnackBar ----------------------------
+// :host ::ng-deep {
+//   .updating-animation.mat-progress-bar .mat-progress-bar-fill {
+//     transition: transform 100ms linear;
+//   }
+// }
 
 .success-snackbar {
-  --mat-mdc-snack-bar-button-color: red;
   --mdc-snackbar-container-color: white;
   --mdc-snackbar-supporting-text-color: green;
 
   .mdc-snackbar__label {
-    padding-bottom: 0px !important;
+    padding-top: 8px;
+    padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
   }

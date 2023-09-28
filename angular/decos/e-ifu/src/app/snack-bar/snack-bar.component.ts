@@ -38,22 +38,6 @@ export class SnackBarComponent implements AfterViewInit {
         })
       )
       .subscribe();
-
-
-    // const timer$ = interval(intervalPeriod);
-
-    // const sub = timer$.subscribe((sec) => {
-    //   this.value = 100 - sec * 100 / seconds;
-    //   this.curSec = sec;
-
-    //   // console.log('value: %d', this.value);
-    //   // console.log('curSec: %d', this.curSec);
-
-    //   if (this.curSec === intervalPeriod) {
-    //     sub.unsubscribe();
-    //     this.data.snackBar.dismiss();
-    //   }
-    // });
   }
 
   ngAfterViewInit() {

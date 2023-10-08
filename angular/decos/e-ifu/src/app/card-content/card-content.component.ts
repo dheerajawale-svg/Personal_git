@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { SnackbarService } from '../snack-bar/snackbar.service';
+import { eifu } from '../models/eifu';
 
 @Component({
   selector: 'app-card-content',
@@ -8,6 +9,9 @@ import { SnackbarService } from '../snack-bar/snackbar.service';
   styleUrls: ['./card-content.component.scss']
 })
 export class CardContentComponent {
+
+  @Input() maincontent: eifu | undefined;
+
   selected = 'option2';
   panelOpenState = false;
   favIcon = ['material-icons-outlined'];

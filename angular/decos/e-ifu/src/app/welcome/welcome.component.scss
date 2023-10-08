@@ -85,3 +85,11 @@ h1 {
   --mat-snack-bar-button-color:  #fff;
   margin-right: 25px !important;
 }
+
+.mat-checkbox-ripple { display: none !important; }
+
+.mat-ripple-element.mat-radio-persistent-ripple {
+  display: none !important;
+}
+
+.mat-ripple { display: none !important; }

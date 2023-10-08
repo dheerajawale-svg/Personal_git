@@ -46,7 +46,7 @@
                 </mat-form-field>
               </div>
               <div class="optin">
-                <mat-checkbox formControlName="checked"
+                <mat-checkbox formControlName="checked"  [disableRipple]="true"
                               (change)="boxChanged($event.checked)"
                               labelPosition="before">Opt out of email</mat-checkbox>
               </div>

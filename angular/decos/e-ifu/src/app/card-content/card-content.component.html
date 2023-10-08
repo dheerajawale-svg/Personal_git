@@ -7,7 +7,7 @@
                   [ngClass]="favIcon">grade</mat-icon>
       </div>
       <mat-card-title-group>
-        <mat-card-title>Otosuite Otometrics All Modalities</mat-card-title>
+        <mat-card-title>{{maincontent?.productHeader}}</mat-card-title>
         <mat-card-subtitle>Desktop Application</mat-card-subtitle>
         <mat-form-field appearance="outline">
           <mat-label>Version</mat-label>
@@ -25,30 +25,30 @@
       <div class="content-div">
         <span>
           <mat-icon>bookmarks</mat-icon>
-          Product family
+          {{maincontent?.productFamily}}
         </span>
         <span>
           <mat-icon>storage</mat-icon>
-          554.62 KB
+          {{maincontent?.productSize}} KB
         </span>
         <span>
           <mat-icon>calendar_month</mat-icon>
-          03/26/2017
+          {{maincontent?.releaseDate}}
         </span>
         <span>
           <mat-icon>public</mat-icon>
-          English - English (UK)
+          {{maincontent?.productLanguage}}
         </span>
       </div>
     </mat-card-content>
 
     <mat-card-actions style="margin-top: 25px;">
       <div class="actions-buttons-div">
-        <button mat-raised-button (click)="onShare()">
+        <button mat-raised-button>
           <mat-icon>print</mat-icon>
           Print
         </button>
-        <button mat-raised-button>
+        <button mat-raised-button (click)="onShare()">
           <mat-icon>share</mat-icon>
           Share
         </button>
@@ -79,8 +79,7 @@
         </mat-panel-title> -->
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
-        <h1>I'm visible because I am open</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid voluptate fugit corporis beatae, ipsa rerum voluptatem.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet consequatur fugiat tenetur reprehenderit. Necessitatibus est in explicabo quia libero repellat eveniet corporis veniam, dolorum quis, at cumque molestiae earum illo.</p>
         <button mat-raised-button>
           <mat-icon>download</mat-icon>
           Click Me!

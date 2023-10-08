@@ -43,8 +43,15 @@ export class SnackBarComponent implements AfterViewInit {
   ngAfterViewInit() {
 
     setTimeout(() => {
-      this.startTimer(55);
-      // this.value = 0;
+      this.startTimer(50);
+
+      // const interval = setInterval(() => {
+      //   this.value -= 0.25
+      //   if (this.value === 0) {
+      //     this.data.snackBar.dismiss();
+      //   }
+      // }, 20);
+
     }, 500);
 
 

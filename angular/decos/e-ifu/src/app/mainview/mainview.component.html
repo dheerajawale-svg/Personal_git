@@ -174,10 +174,9 @@
             <mat-icon>chevron_right</mat-icon>
           </button>
           <div class="card-list-container">
-            <app-card-content></app-card-content>
-            <app-card-content></app-card-content>
-            <app-card-content></app-card-content>
-            <app-card-content></app-card-content>
+            <ng-container *ngFor="let item of cardsArray">
+              <app-card-content [maincontent]="item"></app-card-content>
+            </ng-container>
           </div>
         </div>
       </mat-sidenav-container>

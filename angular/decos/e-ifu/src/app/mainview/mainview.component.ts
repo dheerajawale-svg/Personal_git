@@ -14,6 +14,45 @@ import { MatRippleModule } from '@angular/material/core';
 
 })
 export class MainviewComponent implements AfterViewInit, OnDestroy  {
+
+  cardsArray = [
+    {
+      "productHeader": "Otosuite Tone Modality",
+      "productFamily": "Audiometry",
+      "productSize": "554.62",
+      "productLanguage": "English (US)",
+      "releaseDate": "2015-09-12"
+    },
+    {
+      "productHeader": "Neuroworks EEG",
+      "productFamily": "Neuro",
+      "productSize": "1054",
+      "productLanguage": "English (US)",
+      "releaseDate": "2011-04-27"
+    },
+    {
+      "productHeader": "Otosuite Speech Modality",
+      "productFamily": "Audiometry",
+      "productSize": "500.62",
+      "productLanguage": "English (US)",
+      "releaseDate": "2016-02-22"
+    },
+    {
+      "productHeader": "SleepWorks",
+      "productFamily": "Neuro",
+      "productSize": "754.12",
+      "productLanguage": "English (US)",
+      "releaseDate": "2012-05-23"
+    },
+    {
+      "productHeader": "Otobase",
+      "productFamily": "Audiometry",
+      "productSize": "514.50",
+      "productLanguage": "English (US)",
+      "releaseDate": "2014-10-01"
+    }
+  ]
+
   showFiller = false;
   showNavText = false;
   @ViewChild('drawer') matDrawer: any;

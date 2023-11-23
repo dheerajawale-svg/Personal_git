@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/
 export class FilterViewComponent {
   @Input() isVisible: boolean | undefined;
   @Output() drawerClosedEvent = new EventEmitter<boolean>();
-  favoriteSeason: string | undefined;
-  seasons: string[] = ['Otosuite', 'Otobase', 'Otosuite Reports', 'Otoscan'];
+  selectedProduct: string | undefined;
+  productLines: string[] = ['Otosuite', 'Otobase', 'Otosuite Reports', 'Otoscan'];
 
   close() {
     this.isVisible = false;

@@ -17,11 +17,11 @@
     <ng-template matExpansionPanelContent>
       <mat-radio-group aria-labelledby="example-radio-group-label"
                        class="example-radio-group"
-                       [(ngModel)]="favoriteSeason">
+                       [(ngModel)]="selectedProduct">
         <mat-radio-button class="example-radio-button"
-                          *ngFor="let season of seasons"
-                          [value]="season">
-          {{season}}
+                          *ngFor="let pline of productLines"
+                          [value]="pline">
+          {{pline}}
         </mat-radio-button>
       </mat-radio-group>
     </ng-template>
@@ -37,11 +37,11 @@
     <ng-template matExpansionPanelContent>
       <mat-radio-group aria-labelledby="example-radio-group-label"
                        class="example-radio-group"
-                       [(ngModel)]="favoriteSeason">
+                       [(ngModel)]="selectedProduct">
         <mat-radio-button class="example-radio-button"
-                          *ngFor="let season of seasons"
-                          [value]="season">
-          {{season}}
+                          *ngFor="let pline of productLines"
+                          [value]="pline">
+          {{pline}}
         </mat-radio-button>
       </mat-radio-group>
     </ng-template>

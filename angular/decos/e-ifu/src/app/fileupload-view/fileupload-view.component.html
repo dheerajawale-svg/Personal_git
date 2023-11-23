@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button
+          class="example-icon"
+          aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="example-spacer"></span>
+  <img class="logo-image"
+       width="100px"
+       src="/assets/logo-white.png"
+       alt="natus logo">
+</mat-toolbar>
+
+<div class="container" appDrag (fileDropped)="onFileDropped($event)">
+  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
+  <img src="assets/img/dnd/ic-upload-file.svg" alt="">
+  <h3>Drag and drop file here</h3>
+  <h3>or</h3>
+  <label for="fileDropRef">Browse for file</label>
+</div>
+<div class="files-list">
+  <div class="single-file" *ngFor="let file of uploadedFiles; let i = index">
+    <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
+    <div class="info">
+      <h4 class="name">
+        {{ file?.fileName }}
+      </h4>
+      <p class="size">
+        {{ formatBytes(file.fileSize) }}
+      </p>
+      <!-- <mat-progress-bar
+                    color="accent"
+                    [value]="value"></mat-progress-bar> -->
+      <app-progress [progress]="value"></app-progress>
+    </div>
+    <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+  </div>
+</div>
+
+<!-- <input type="button" (click)="onUpload" /> -->
+<button (click)="onUpload()">Upload Files</button>
+

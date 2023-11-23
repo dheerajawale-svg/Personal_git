@@ -48,12 +48,16 @@ import { MainviewComponent } from './mainview/mainview.component';
 import { CardContentComponent } from './card-content/card-content.component';
 import { FilterViewComponent } from './filter-view/filter-view.component';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { FileuploadViewComponent } from './fileupload-view/fileupload-view.component';
+import { DragDirective } from './fileupload-view/drag.directive';
+import { ProgressComponent } from './progress/progress.component';
 
 
 const routes: Routes = [
   {path: '', component: WelcomeComponent},
   {path: 'main', component: MainviewComponent},
   {path: 'theme', component: ThemeSwitchComponent},
+  {path: 'fileupload', component: FileuploadViewComponent}
 ];
 
 @NgModule({
@@ -64,7 +68,10 @@ const routes: Routes = [
     MainviewComponent,
     CardContentComponent,
     FilterViewComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    FileuploadViewComponent,
+    DragDirective,
+    ProgressComponent
   ],
   imports: [
     BrowserModule,

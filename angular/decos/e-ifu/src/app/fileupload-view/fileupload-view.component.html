@@ -33,9 +33,18 @@
                     [value]="file.progressVal | async"></mat-progress-bar>
       <!-- <app-progress [progress]="value"></app-progress> -->
     </div>
-    <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+    <button mat-fab color="primary" width="24px"
+            aria-label="Remove File from upload list" style="margin-left: 0.5em;"
+            (click)="deleteFile(i)" [disabled]="file.deleteDisabled">
+      <mat-icon>delete</mat-icon>
+    </button>
+
   </div>
 </div>
+
+<!-- <table mat-table>
+
+</table> -->
 
 <!-- <input type="button" (click)="onUpload" /> -->
 <button (click)="onUpload()">Upload Files</button>

@@ -11,7 +11,6 @@ import { UploadedFile } from './filemodel';
 export class FileuploadViewComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   uploadedFiles: UploadedFile[] = [];
-  deleteEnabled = false;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -37,10 +36,6 @@ export class FileuploadViewComponent {
    * @param index (File index)
    */
   deleteFile(index: number) {
-    if (!this.deleteEnabled) {
-      console.log("Upload in progress.");
-      return;
-    }
     this.uploadedFiles.splice(index, 1);
   }
 
@@ -49,8 +44,8 @@ export class FileuploadViewComponent {
    */
   uploadFilesSimulator(index: number) {
     console.log('Current Index is' + index);
-    this.uploadedFiles[index].progressVal = interval(50).pipe(
-                map(() => 1),
+    this.uploadedFiles[index].progressVal = interval(80).pipe(
+                map(() => 10),
                 scan((a, b) => a + b),
                 takeWhile((value) => value < 100, true)
     );
@@ -58,7 +53,7 @@ export class FileuploadViewComponent {
     this.uploadedFiles[index].progressVal.pipe(takeLast(1)).subscribe((val) => {
       // console.log('done')
       // console.log(val);
-      this.deleteEnabled = true;
+      this.uploadedFiles[index].deleteDisabled = false;
     });
   }
 
@@ -73,7 +68,8 @@ export class FileuploadViewComponent {
         fileSize: item.size,
         progress: 0,
         actualFile: item,
-        progressVal: EMPTY
+        progressVal: EMPTY,
+        deleteDisabled: true
       }
 
       this.uploadedFiles.push(uFile);

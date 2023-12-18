@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
-import { Observable, catchError, last, map, tap } from 'rxjs';
+import { Observable, catchError, last, map, tap, EMPTY, scan, takeWhile, interval, takeLast, take } from 'rxjs';
 import { UploadedFile } from './filemodel';
 
 @Component({
@@ -11,7 +11,7 @@ import { UploadedFile } from './filemodel';
 export class FileuploadViewComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
   uploadedFiles: UploadedFile[] = [];
-  value = 50;
+  deleteEnabled = false;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -37,7 +37,7 @@ export class FileuploadViewComponent {
    * @param index (File index)
    */
   deleteFile(index: number) {
-    if (this.uploadedFiles[index].progress < 100) {
+    if (!this.deleteEnabled) {
       console.log("Upload in progress.");
       return;
     }
@@ -48,22 +48,18 @@ export class FileuploadViewComponent {
    * Simulate the upload process
    */
   uploadFilesSimulator(index: number) {
-    setTimeout(() => {
-      if (index === this.uploadedFiles.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.uploadedFiles[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            console.log(this.value);
-            this.value += 10;
-            this.uploadedFiles[index].progress +=10;
-          }
-        }, 100);
-      }
-    }, 500);
+    console.log('Current Index is' + index);
+    this.uploadedFiles[index].progressVal = interval(50).pipe(
+                map(() => 1),
+                scan((a, b) => a + b),
+                takeWhile((value) => value < 100, true)
+    );
+
+    this.uploadedFiles[index].progressVal.pipe(takeLast(1)).subscribe((val) => {
+      // console.log('done')
+      // console.log(val);
+      this.deleteEnabled = true;
+    });
   }
 
   /**
@@ -76,7 +72,8 @@ export class FileuploadViewComponent {
         fileName: item.name,
         fileSize: item.size,
         progress: 0,
-        actualFile: item
+        actualFile: item,
+        progressVal: EMPTY
       }
 
       this.uploadedFiles.push(uFile);
@@ -84,9 +81,9 @@ export class FileuploadViewComponent {
 
     if(this.fileDropEl != undefined) {
       console.log("coming here.....")
-      console.log(this.fileDropEl.nativeElement.value);
-      this.fileDropEl.nativeElement.value = "";
-      this.uploadFilesSimulator(0);
+      // console.log(this.fileDropEl.nativeElement.value);
+      // this.fileDropEl.nativeElement.value = "";
+      this.uploadFilesSimulator(this.uploadedFiles.length-1);
     }
   }
 

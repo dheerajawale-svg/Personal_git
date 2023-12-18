@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validatio
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Observable, interval, map, mapTo, scan, takeLast, takeWhile } from 'rxjs';
 
 @Component({
   selector: 'app-welcome',
@@ -13,7 +14,7 @@ export class WelcomeComponent {
   title = 'e-ifu';
   radioValue: string | undefined;
   email: string | null | undefined;
-
+  progress: Observable<number> | undefined;
   consentForm: FormGroup;
 
   constructor(private _formBuilder: FormBuilder,
@@ -58,7 +59,16 @@ export class WelcomeComponent {
       this.openSnackbar("Invalid Data!!!");
     }
     else {
-      this._router.navigate(['main']);
+
+      this.progress = interval(100).pipe(
+        map(() => 10),
+        scan((a, b) => a + b),
+        takeWhile((value) => value < 100, true)
+      );
+      this.progress.pipe(takeLast(1)).subscribe((_) => {
+        console.log('done')
+        this._router.navigate(['main']);
+      });
     }
 
     console.log(this.consentForm?.value);

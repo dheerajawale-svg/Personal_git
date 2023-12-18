@@ -28,10 +28,10 @@
       <p class="size">
         {{ formatBytes(file.fileSize) }}
       </p>
-      <!-- <mat-progress-bar
+      <mat-progress-bar
                     color="accent"
-                    [value]="value"></mat-progress-bar> -->
-      <app-progress [progress]="value"></app-progress>
+                    [value]="file.progressVal | async"></mat-progress-bar>
+      <!-- <app-progress [progress]="value"></app-progress> -->
     </div>
     <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
   </div>

@@ -80,7 +80,7 @@
                   color="primary" (click)="onNgSubmit()">Continue</button>
         </div>
       </mat-card-actions>
-
+      <mat-progress-bar [value]="progress | async"></mat-progress-bar>
       <!-- <mat-card-footer>
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       </mat-card-footer> -->

@@ -38,13 +38,13 @@ export class WelcomeComponent {
   }
 
   radioSelected(event: MatRadioChange) {
-    console.log(event);
+    // console.log(event);
     this.radioValue = event.value;
     // console.log(this.radioValue);
   }
 
   boxChanged(evchecked: any) {
-    console.log(evchecked);
+    // console.log(evchecked);
     if(!evchecked) {
       this.consentForm.controls["email"].setValidators([Validators.required, Validators.email]);
     }
@@ -71,8 +71,8 @@ export class WelcomeComponent {
       });
     }
 
-    console.log(this.consentForm?.value);
-    console.log(this.radioValue);
+    // console.log(this.consentForm?.value);
+    // console.log(this.radioValue);
   }
 
   openSnackbar(message: string) {

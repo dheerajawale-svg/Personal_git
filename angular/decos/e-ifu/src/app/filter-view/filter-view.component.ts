@@ -17,7 +17,6 @@ export class FilterViewComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     this.isVisible = changes['isVisible'].currentValue;
   }
 }

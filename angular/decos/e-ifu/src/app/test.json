@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "7-26-9872-EN_Rev 05.pdf",
+    "languageCode": "en",
+    "languageNameLocalized": null,
+    "product": "OTOsuite",
+    "manualType": "SYSTEMREQUIREMENTS",
+    "manualVariant": "",
+    "agileNo": "7-26-9872-EN/05",
+    "changelist": null
+  },
+  {
+    "fileName": "7-26-9872-FR Rev05.pdf",
+    "languageCode": "fr",
+    "languageNameLocalized": null,
+    "product": "OTOsuite",
+    "manualType": "CONFIGURATIONSYSTÈMEREQUISE",
+    "manualVariant": "",
+    "agileNo": "7-26-9872-FR/05",
+    "changelist": null
+  }
+]

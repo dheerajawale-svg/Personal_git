@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { Observable, catchError, last, map, tap, EMPTY, scan, takeWhile, interval, takeLast, take } from 'rxjs';
-import { UploadedFile } from './filemodel';
+import { FileMetadata, UploadedFile } from './filemodel';
 
 @Component({
   selector: 'app-fileupload-view',
@@ -111,7 +111,15 @@ export class FileuploadViewComponent {
 
     this.httpClient.post('https://localhost:7132/Pdf', formData)
     .subscribe(res => {
-      console.log(res);
+      // let jsonObj : { string: FileMetadata[] } = JSON.stringify(res);
+      let jsonStr = JSON.stringify(res);
+      let jsonObj = JSON.parse(jsonStr);
+      let mdList = jsonObj as FileMetadata[];
+
+      for(let item of mdList) {
+        console.log(item);
+      }
+      // console.log(mdList);
     });
   }
 

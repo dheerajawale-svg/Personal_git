@@ -115,7 +115,7 @@ const routes: Routes = [
     FormErrorModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   providers: [],

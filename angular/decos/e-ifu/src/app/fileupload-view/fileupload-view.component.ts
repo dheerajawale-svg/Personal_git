@@ -1,7 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { Observable, catchError, last, map, tap, EMPTY, scan, takeWhile, interval, takeLast, take } from 'rxjs';
-import { FileMetadata, UploadedFile } from './filemodel';
+import { FileMetadata, KvPair, UploadedFile } from './filemodel';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-fileupload-view',
@@ -10,9 +11,22 @@ import { FileMetadata, UploadedFile } from './filemodel';
 })
 export class FileuploadViewComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
-  uploadedFiles: UploadedFile[] = [];
 
-  constructor(private httpClient: HttpClient) {}
+  uploadedFiles: UploadedFile[] = [];
+  allMetadata = new MatTableDataSource<KvPair>();
+  // allMetadata: FileMetadata[] = [
+  //   {product: "Otosuite", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
+  //   {product: "Aurical Aud", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
+  //   {product: "Tymp", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
+  //   {product: "PMM", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
+  // ];
+
+
+  displayedColumns: string[] = ['Key', 'Value'];
+
+  constructor(private httpClient: HttpClient) {
+    // let fmd: FileMetadata = {product: "Otosuite", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""}
+  }
 
   /**
    * on file drop handler
@@ -43,7 +57,6 @@ export class FileuploadViewComponent {
    * Simulate the upload process
    */
   uploadFilesSimulator(index: number) {
-    console.log('Current Index is' + index);
     this.uploadedFiles[index].progressVal = interval(80).pipe(
                 map(() => 10),
                 scan((a, b) => a + b),
@@ -105,21 +118,44 @@ export class FileuploadViewComponent {
       formData.append(file.fileName, file.actualFile);
     }
 
-    console.log('sending request');
-
-    // this.makeRequest(formData).subscribe();
-
-    this.httpClient.post('https://localhost:7132/Pdf', formData)
+    this.httpClient.post<FileMetadata[]>('https://localhost:7132/Pdf', formData)
     .subscribe(res => {
-      // let jsonObj : { string: FileMetadata[] } = JSON.stringify(res);
-      let jsonStr = JSON.stringify(res);
-      let jsonObj = JSON.parse(jsonStr);
-      let mdList = jsonObj as FileMetadata[];
+      // this.allMetadata.data = res;
 
-      for(let item of mdList) {
-        console.log(item);
+      for(let item of res) {
+        for(let keyI in item) {
+          let tempData = this.allMetadata.data;
+          tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
+          this.allMetadata.data = tempData;
+        }
+        // Object.keys(item).map(key => {
+        //   let obj: KvPair = {
+        //     key: key,
+        //     value: item[key]
+        //   }
+        // })
       }
-      // console.log(mdList);
+
+      // for(let item of res) {
+      //   let obj: FileMetadata = {
+      //     product: item.product,
+      //     productTitleLocalized: item.productTitleLocalized,
+      //     languageCode: item.languageCode,
+      //     languageNameLocalized: item.languageNameLocalized,
+      //     manualType: item.manualType,
+      //     manualVariant: item.manualVariant,
+      //     agileNo: item.agileNo,
+      //     shared: item.shared,
+      //     changelist: item.changelist
+      //   }
+      //   this.allMetadata.data.push(obj);
+      // }
+      // this.allMetadata = res;
+      console.log(this.allMetadata.data);
+
+      // for(let element of this.allMetadata) {
+      //   Object.values(element).map(val => console.log(val));
+      // }
     });
   }
 

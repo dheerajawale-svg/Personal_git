@@ -42,15 +42,22 @@
   margin-top: 1.5rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  display: flex;
+  justify-content: center;
 
-  .single-file {
-    display: flex;
-    padding: 0.5rem;
-    justify-content: space-between;
+  .row {
     align-items: center;
     border: dashed 1px #979797;
+    padding: 0.5rem;
     margin-bottom: 1rem;
+  }
 
+  .single-file {
+    display: inline-block;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    // border: dashed 1px #979797;
     img.delete {
       margin-left: 0.5rem;
       cursor: pointer;
@@ -127,4 +134,8 @@
   100% {
     transform: translate(1px, -2px) rotate(-1deg);
   }
+}
+
+.mat-column-Key {
+  flex: 0 0 10%;
 }

@@ -24,9 +24,7 @@ export class FileuploadViewComponent {
 
   displayedColumns: string[] = ['Key', 'Value'];
 
-  constructor(private httpClient: HttpClient) {
-    // let fmd: FileMetadata = {product: "Otosuite", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""}
-  }
+  constructor(private httpClient: HttpClient) {}
 
   /**
    * on file drop handler
@@ -89,10 +87,14 @@ export class FileuploadViewComponent {
     }
 
     if(this.fileDropEl != undefined) {
-      console.log("coming here.....")
-      // console.log(this.fileDropEl.nativeElement.value);
-      // this.fileDropEl.nativeElement.value = "";
-      this.uploadFilesSimulator(this.uploadedFiles.length-1);
+      if(files.length > 1) {
+        for (let index = 0; index < files.length; index++) {
+          this.uploadFilesSimulator(index);
+        }
+      }
+      else if(files.length == 1) {
+        this.uploadFilesSimulator(this.uploadedFiles.length-1);
+      }
     }
   }
 
@@ -128,34 +130,7 @@ export class FileuploadViewComponent {
           tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
           this.allMetadata.data = tempData;
         }
-        // Object.keys(item).map(key => {
-        //   let obj: KvPair = {
-        //     key: key,
-        //     value: item[key]
-        //   }
-        // })
       }
-
-      // for(let item of res) {
-      //   let obj: FileMetadata = {
-      //     product: item.product,
-      //     productTitleLocalized: item.productTitleLocalized,
-      //     languageCode: item.languageCode,
-      //     languageNameLocalized: item.languageNameLocalized,
-      //     manualType: item.manualType,
-      //     manualVariant: item.manualVariant,
-      //     agileNo: item.agileNo,
-      //     shared: item.shared,
-      //     changelist: item.changelist
-      //   }
-      //   this.allMetadata.data.push(obj);
-      // }
-      // this.allMetadata = res;
-      console.log(this.allMetadata.data);
-
-      // for(let element of this.allMetadata) {
-      //   Object.values(element).map(val => console.log(val));
-      // }
     });
   }
 
@@ -193,6 +168,4 @@ export class FileuploadViewComponent {
   private showProgress(msg: any) {
     console.log(msg);
   }
-
-
 }

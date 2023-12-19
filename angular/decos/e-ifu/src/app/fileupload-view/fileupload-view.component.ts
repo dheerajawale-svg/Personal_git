@@ -26,16 +26,10 @@ export class FileuploadViewComponent {
 
   constructor(private httpClient: HttpClient) {}
 
-  /**
-   * on file drop handler
-   */
   onFileDropped($event: FileList) {
     this.prepareFilesList($event);
   }
 
-  /**
-   * handle file from browsing
-   */
   fileBrowseHandler($event: Event) {
     const etarget = $event.target as HTMLInputElement;
     if(etarget.files) {
@@ -43,17 +37,10 @@ export class FileuploadViewComponent {
     }
   }
 
-  /**
-   * Delete file from files list
-   * @param index (File index)
-   */
   deleteFile(index: number) {
     this.uploadedFiles.splice(index, 1);
   }
 
-  /**
-   * Simulate the upload process
-   */
   uploadFilesSimulator(index: number) {
     this.uploadedFiles[index].progressVal = interval(80).pipe(
                 map(() => 10),
@@ -62,16 +49,10 @@ export class FileuploadViewComponent {
     );
 
     this.uploadedFiles[index].progressVal.pipe(takeLast(1)).subscribe((val) => {
-      // console.log('done')
-      // console.log(val);
       this.uploadedFiles[index].deleteDisabled = false;
     });
   }
 
-  /**
-   * Convert Files list to normal array list
-   * @param files (Files List)
-   */
   prepareFilesList(files: FileList) {
     for (const item of Array.from(files)) {
       const uFile: UploadedFile = {
@@ -122,8 +103,6 @@ export class FileuploadViewComponent {
 
     this.httpClient.post<FileMetadata[]>('https://localhost:7132/Pdf', formData)
     .subscribe(res => {
-      // this.allMetadata.data = res;
-
       for(let item of res) {
         for(let keyI in item) {
           let tempData = this.allMetadata.data;

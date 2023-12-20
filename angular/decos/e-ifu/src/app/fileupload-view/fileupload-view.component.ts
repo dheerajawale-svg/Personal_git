@@ -120,15 +120,13 @@ export class FileuploadViewComponent {
 
             existingFile.metadataPresent = true;
             existingFile.metadataSource = new MatTableDataSource<KvPair>(tempData);
-            // this.ref.detectChanges();
+            this.notifyService.metadataChanged.next(existingFile.fileName);
           }
 
           //NOT WORKING
           //   this.ngZone.run(() => {
           //  });
         }
-
-        this.notifyService.metadataChanged.next(true);
       }
     });
   }

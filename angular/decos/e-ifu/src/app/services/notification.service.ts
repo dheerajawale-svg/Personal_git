@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class NotificationService {
-  metadataChanged = new Subject<boolean>();
+  metadataChanged = new Subject<string>();
 
   constructor() { }
 }

@@ -17,10 +17,13 @@ export class FiledropviewComponent implements OnInit, OnDestroy {
   constructor(private ref: ChangeDetectorRef, private notifyService: NotificationService) {
 
   }
+
   ngOnInit(): void {
     this.ref.detach();
-    this.detectionSubscription = this.notifyService.metadataChanged.subscribe((flag) => {
-      this.ref.detectChanges();
+    this.detectionSubscription = this.notifyService.metadataChanged.subscribe((fileName) => {
+      if(this.file.fileName == fileName) {
+        this.ref.detectChanges();
+      }
     })
   }
   ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-<div  style="width: 500px; align-content: center;" *ngIf="file.metadataPresent">
+<div  class="dropview" *ngIf="file.metadataPresent">
   <table mat-table [dataSource]="file.metadataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="Key">
       <th mat-header-cell *matHeaderCellDef>Property Name</th>

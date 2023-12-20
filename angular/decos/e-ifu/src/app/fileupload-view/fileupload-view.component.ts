@@ -1,8 +1,9 @@
-import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
-import { Observable, catchError, last, map, tap, EMPTY, scan, takeWhile, interval, takeLast, take } from 'rxjs';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { HttpClient, HttpEvent, HttpEventType } from '@angular/common/http';
+import { map, EMPTY, scan, takeWhile, interval, takeLast } from 'rxjs';
 import { FileMetadata, KvPair, UploadedFile } from './filemodel';
 import { MatTableDataSource } from '@angular/material/table';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-fileupload-view',
@@ -20,7 +21,8 @@ export class FileuploadViewComponent {
   //   {product: "Tymp", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
   //   {product: "PMM", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
   // ];
-  constructor(private httpClient: HttpClient, private ngZone: NgZone) {}
+  constructor(private httpClient: HttpClient,
+              private notifyService: NotificationService) {}
 
   onFileDropped($event: FileList) {
     this.prepareFilesList($event);
@@ -92,48 +94,52 @@ export class FileuploadViewComponent {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
 
+
+  result: FileMetadata[] = [];
   onUpload() {
     const formData = new FormData();
     for(let file of this.uploadedFiles) {
       formData.append(file.fileName, file.actualFile);
     }
 
-    this.httpClient.post<FileMetadata[]>('https://eifuwebapi.azurewebsites.net/pdf', formData)
-    .subscribe(res => {
-      for(let item of res) {
-        console.log(item);
-        const existingFile = this.uploadedFiles.find(x => x.fileName == item.fileName);
-        if(existingFile) {
+    this.httpClient.post<FileMetadata[]>('https://eifuwebapi.azurewebsites.net/pdf', formData).subscribe({
+      next: (res) => {
+        this.result = res;
+       },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {
+        for(let item of this.result) {
+          let existingFile = this.uploadedFiles.find(x => x.fileName == item.fileName);
+          if(existingFile) {
 
-          let tempData: KvPair[] = [];
-          for(let keyI in item) {
-            tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
-          }
+            //NOT WORKING
+            // setTimeout(() => {
+            //   console.log(item);
+            // }, 10);
 
-          this.ngZone.run( () => {
+            let tempData: KvPair[] = [];
+            for(let keyI in item) {
+              tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
+            }
+
             existingFile.metadataPresent = true;
             existingFile.metadataSource = new MatTableDataSource<KvPair>(tempData);
-         });
+            // this.ref.detectChanges();
+          }
+
+          //NOT WORKING
+          //   this.ngZone.run(() => {
+          //  });
         }
+
+        this.notifyService.metadataChanged.next(true);
       }
-    }, (res) => {
-      console.log(res);
     });
   }
 
-  private makeRequest(formData: FormData) : Observable<any> {
-    const req = new HttpRequest('POST', 'https://localhost:7132/Pdf', formData, {
-      reportProgress: true
-    });
-
-    return this.httpClient.request(req).pipe(
-      map(event => console.log(this.getEventMessage(event, this.uploadedFiles[0].actualFile))),
-      tap(message => this.showProgress(message)),
-      last()
-    );
-  }
-
-    /** Return distinct message for sent, upload progress, & response events */
+  /** Return distinct message for sent, upload progress, & response events */
   private getEventMessage(event: HttpEvent<any>, file: File) {
     switch (event.type) {
       case HttpEventType.Sent:

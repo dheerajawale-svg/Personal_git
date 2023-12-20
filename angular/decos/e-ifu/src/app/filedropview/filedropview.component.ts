@@ -1,15 +1,29 @@
-import { Component, Input } from '@angular/core';
-import { KvPair, UploadedFile } from '../fileupload-view/filemodel';
-import { EMPTY_OBSERVER } from 'rxjs/internal/Subscriber';
-import { EMPTY } from 'rxjs';
-import { MatTableDataSource } from '@angular/material/table';
+import { ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { UploadedFile } from '../fileupload-view/filemodel';
+import { Subscription } from 'rxjs';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-filedropview',
   templateUrl: './filedropview.component.html',
   styleUrls: ['./filedropview.component.scss']
 })
-export class FiledropviewComponent {
+
+export class FiledropviewComponent implements OnInit, OnDestroy {
   @Input() file!: UploadedFile;
   displayedColumns: string[] = ['Key', 'Value'];
+  detectionSubscription: Subscription = new Subscription;
+
+  constructor(private ref: ChangeDetectorRef, private notifyService: NotificationService) {
+
+  }
+  ngOnInit(): void {
+    this.ref.detach();
+    this.detectionSubscription = this.notifyService.metadataChanged.subscribe((flag) => {
+      this.ref.detectChanges();
+    })
+  }
+  ngOnDestroy(): void {
+    this.detectionSubscription?.unsubscribe();
+  }
 }

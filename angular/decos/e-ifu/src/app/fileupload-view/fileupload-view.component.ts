@@ -15,12 +15,6 @@ export class FileuploadViewComponent {
 
   uploadedFiles: UploadedFile[] = [];
   allMetadata = new MatTableDataSource<KvPair>();
-  // allMetadata: FileMetadata[] = [
-  //   {product: "Otosuite", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
-  //   {product: "Aurical Aud", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
-  //   {product: "Tymp", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
-  //   {product: "PMM", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
-  // ];
   constructor(private httpClient: HttpClient,
               private notifyService: NotificationService) {}
 

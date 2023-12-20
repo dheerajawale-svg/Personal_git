@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpRequest } from '@angular/common/http';
 import { Observable, catchError, last, map, tap, EMPTY, scan, takeWhile, interval, takeLast, take } from 'rxjs';
 import { FileMetadata, KvPair, UploadedFile } from './filemodel';
@@ -20,11 +20,7 @@ export class FileuploadViewComponent {
   //   {product: "Tymp", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
   //   {product: "PMM", languageCode: "EN", languageNameLocalized: "", productTitleLocalized:"", manualType:"", manualVariant:"", agileNo:"", shared:"", changelist:""},
   // ];
-
-
-  displayedColumns: string[] = ['Key', 'Value'];
-
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, private ngZone: NgZone) {}
 
   onFileDropped($event: FileList) {
     this.prepareFilesList($event);
@@ -45,7 +41,7 @@ export class FileuploadViewComponent {
     this.uploadedFiles[index].progressVal = interval(80).pipe(
                 map(() => 10),
                 scan((a, b) => a + b),
-                takeWhile((value) => value < 100, true)
+                takeWhile((value) => value < 110, true)
     );
 
     this.uploadedFiles[index].progressVal.pipe(takeLast(1)).subscribe((val) => {
@@ -58,10 +54,11 @@ export class FileuploadViewComponent {
       const uFile: UploadedFile = {
         fileName: item.name,
         fileSize: item.size,
-        progress: 0,
         actualFile: item,
         progressVal: EMPTY,
-        deleteDisabled: true
+        deleteDisabled: true,
+        metadataPresent: false,
+        metadataSource: new MatTableDataSource<KvPair>()
       }
 
       this.uploadedFiles.push(uFile);
@@ -101,15 +98,26 @@ export class FileuploadViewComponent {
       formData.append(file.fileName, file.actualFile);
     }
 
-    this.httpClient.post<FileMetadata[]>('https://localhost:7132/Pdf', formData)
+    this.httpClient.post<FileMetadata[]>('https://eifuwebapi.azurewebsites.net/pdf', formData)
     .subscribe(res => {
       for(let item of res) {
-        for(let keyI in item) {
-          let tempData = this.allMetadata.data;
-          tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
-          this.allMetadata.data = tempData;
+        console.log(item);
+        const existingFile = this.uploadedFiles.find(x => x.fileName == item.fileName);
+        if(existingFile) {
+
+          let tempData: KvPair[] = [];
+          for(let keyI in item) {
+            tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});
+          }
+
+          this.ngZone.run( () => {
+            existingFile.metadataPresent = true;
+            existingFile.metadataSource = new MatTableDataSource<KvPair>(tempData);
+         });
         }
       }
+    }, (res) => {
+      console.log(res);
     });
   }
 

@@ -51,6 +51,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { FileuploadViewComponent } from './fileupload-view/fileupload-view.component';
 import { DragDirective } from './fileupload-view/drag.directive';
 import { ProgressComponent } from './progress/progress.component';
+import { FiledropviewComponent } from './filedropview/filedropview.component';
 
 
 const routes: Routes = [
@@ -71,7 +72,8 @@ const routes: Routes = [
     SnackBarComponent,
     FileuploadViewComponent,
     DragDirective,
-    ProgressComponent
+    ProgressComponent,
+    FiledropviewComponent
   ],
   imports: [
     BrowserModule,

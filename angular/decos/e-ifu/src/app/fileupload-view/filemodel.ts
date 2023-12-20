@@ -1,15 +1,18 @@
+import { MatTableDataSource } from "@angular/material/table";
 import { Observable } from "rxjs";
 
 export interface UploadedFile {
   fileName: string;
   fileSize: number;
-  progress: number;
   progressVal: Observable<number>;
   actualFile:File;
   deleteDisabled: boolean;
+  metadataPresent: boolean;
+  metadataSource: MatTableDataSource<KvPair>;
 }
 
 export interface FileMetadata {
+  fileName: string,
   languageCode: string,
   languageNameLocalized: string,
   productTitleLocalized: string,

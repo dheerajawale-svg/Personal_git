@@ -1,61 +1,38 @@
-import { AfterViewInit, Component, Inject, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, ViewChild, inject } from '@angular/core';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { delay, interval, map, startWith, tap, throttleTime } from 'rxjs';
+import { EMPTY, Observable, Subscription, delay, interval, map, of, startWith, take, takeWhile, tap, throttleTime, timer } from 'rxjs';
 
 @Component({
   selector: 'app-snack-bar',
   templateUrl: './snack-bar.component.html',
   styleUrls: ['./snack-bar.component.scss']
 })
-export class SnackBarComponent implements AfterViewInit {
+export class SnackBarComponent implements AfterViewInit, OnDestroy {
   value = 100;
-
   @ViewChild(MatProgressBar) progressBar!: MatProgressBar;
+  countDownSub: Subscription | undefined;
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
-
-  }
-
-  curSec: number = 0;
-
-  startTimer(seconds: number) {
-    const intervalPeriod = seconds;
-
-    const sub = interval(intervalPeriod)
-      .pipe(
-        // throttle for animation
-        throttleTime(100),
-        // business logic with event
-        tap(val => {
-          this.value = 100 - val * 100 / seconds;
-          this.curSec = val;
-
-          if (this.curSec === intervalPeriod) {
-            this.data.snackBar.dismiss();
-            sub.unsubscribe();
-          }
-        })
-      )
-      .subscribe();
-  }
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) { }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.startTimer(60);
-    }, 0);
+    const start = 100;
+    this.countDownSub = timer(100, 50).pipe(
+      map(i => start - i),
+      take(start + 1)
+    ).subscribe({
+      next: i => this.value = i,
+      complete: () => {
+        timer(500).subscribe(() => this.onAction());
+      }
+    });
   }
 
   onAction() {
     this.data.snackBar.dismiss();
   }
 
-  // ngAfterViewInit(): void {
-  //   setInterval(() => {
-  //     if(this.value != 0)
-  //       this.value = this.value - 10;
-  //   }, 1000)
-  // }
-
-
+  ngOnDestroy(): void {
+    this.countDownSub?.unsubscribe();
+  }
 }

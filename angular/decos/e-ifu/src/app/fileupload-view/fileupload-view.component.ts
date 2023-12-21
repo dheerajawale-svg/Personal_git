@@ -35,8 +35,8 @@ export class FileuploadViewComponent {
 
   uploadFilesSimulator(index: number) {
     this.uploadedFiles[index].progressVal = interval(80).pipe(
-                map(() => 10),
-                scan((a, b) => a + b),
+                map((val) => val * 10),
+                // scan((a, b) => a + b),
                 takeWhile((value) => value < 110, true)
     );
 
@@ -107,12 +107,6 @@ export class FileuploadViewComponent {
         for(let item of this.result) {
           let existingFile = this.uploadedFiles.find(x => x.fileName == item.fileName);
           if(existingFile) {
-
-            //NOT WORKING
-            // setTimeout(() => {
-            //   console.log(item);
-            // }, 10);
-
             let tempData: KvPair[] = [];
             for(let keyI in item) {
               tempData.push({Key: keyI, Value: item[keyI as keyof FileMetadata]});

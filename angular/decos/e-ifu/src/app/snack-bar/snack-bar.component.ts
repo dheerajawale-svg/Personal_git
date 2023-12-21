@@ -20,7 +20,7 @@ export class SnackBarComponent implements AfterViewInit {
   curSec: number = 0;
 
   startTimer(seconds: number) {
-    const intervalPeriod = 60;
+    const intervalPeriod = seconds;
 
     const sub = interval(intervalPeriod)
       .pipe(
@@ -41,20 +41,9 @@ export class SnackBarComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-
     setTimeout(() => {
-      this.startTimer(50);
-
-      // const interval = setInterval(() => {
-      //   this.value -= 0.25
-      //   if (this.value === 0) {
-      //     this.data.snackBar.dismiss();
-      //   }
-      // }, 20);
-
-    }, 500);
-
-
+      this.startTimer(60);
+    }, 0);
   }
 
   onAction() {

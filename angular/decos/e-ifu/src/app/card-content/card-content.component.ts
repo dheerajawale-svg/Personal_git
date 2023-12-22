@@ -24,22 +24,7 @@ export class CardContentComponent {
   constructor(private _snackBarService: SnackbarService) {}
 
   onDownload() {
-
     this._snackBarService.openCustomSnackBar("Starting Download...", "Ok");
-
-    // let snackBarRef = this._snackBar.open('Download Started', 'OK', {
-    //   horizontalPosition: this.horizontalPosition,
-    //   verticalPosition: this.verticalPosition
-    // });
-
-    // snackBarRef.onAction().subscribe(() => {
-    //   console.log('The snackbar action was triggered!');
-    // });
-
-    // snackBarRef.afterDismissed().subscribe(() => {
-    //   console.log('The snackbar was dismissed');
-    // });
-
   }
 
   onShare() {
@@ -54,13 +39,5 @@ export class CardContentComponent {
     else {
       this.favIcon = ['material-icons-outlined']
     }
-
-    // if(this.favIcon == "material-icons-outlined") {
-    //   this.favIcon = "material-icons";
-    //   console.log("Clicked!!!!!!")
-    // }
-    // else {
-    //   this.favIcon = "material-icons-outlined";
-    // }
   }
 }

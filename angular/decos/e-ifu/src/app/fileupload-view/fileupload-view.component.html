@@ -1,27 +1,56 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button
-          class="example-icon"
-          aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="example-spacer"></span>
-  <img class="logo-image"
-       width="100px"
-       src="/assets/logo-white.png"
-       alt="natus logo">
-</mat-toolbar>
+<mat-toolbar class="top-toolbar"
+                 color="primary"
+                 [class.mat-elevation-z8]=true>
 
-<div class="container" appDrag (fileDropped)="onFileDropped($event)">
-  <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event)" />
-  <img src="assets/img/dnd/ic-upload-file.svg" alt="">
+      <a class="toolbar-screens"
+         matRipple
+         [matMenuTriggerFor]="dropdown">
+        Screens
+      </a>
+
+      <span class="example-spacer"></span>
+
+      <img class="logo-image"
+           width="100px"
+           src="/assets/logo-white.png"
+           alt="natus logo">
+
+      <mat-menu #dropdown>
+
+        <button mat-menu-item
+                routerLink="/main">e-ifus</button>
+
+        <button mat-menu-item
+                routerLink="/fileupload">Upload Files</button>
+
+        <button mat-menu-item
+                routerLink="/">About</button>
+
+      </mat-menu>
+
+    </mat-toolbar>
+
+<div class="container"
+     appDrag
+     (fileDropped)="onFileDropped($event)">
+  <input type="file"
+         #fileDropRef
+         id="fileDropRef"
+         multiple
+         (change)="fileBrowseHandler($event)" />
+  <img src="assets/img/dnd/ic-upload-file.svg"
+       alt="">
   <h3>Drag and drop file here</h3>
   <h3>or</h3>
   <label for="fileDropRef">Browse for file</label>
 </div>
 <div class="files-list">
-  <div *ngFor="let file of uploadedFiles; let i = index" class="row">
-    <div class="single-file" >
-      <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
+  <div *ngFor="let file of uploadedFiles; let i = index"
+       class="row">
+    <div class="single-file">
+      <img src="assets/img/dnd/ic-file.svg"
+           width="45px"
+           alt="file">
       <div class="info">
         <h4 class="name">
           {{ file?.fileName }}
@@ -29,23 +58,38 @@
         <p class="size">
           {{ formatBytes(file.fileSize) }}
         </p>
-        <mat-progress-bar
-                      color="accent"
-                      [value]="file.progressVal | async"></mat-progress-bar>
       </div>
-      <button mat-fab color="primary"
+      <mat-progress-bar color="accent"
+                        [value]="file.progressVal | async"></mat-progress-bar>
+      <button mat-fab
+              color="primary"
               aria-label="Remove File from upload list"
               [ngStyle]="{transform: 'scale(0.6)'}"
-              (click)="deleteFile(i)" [disabled]="file.deleteDisabled">
+              (click)="deleteFile(i)"
+              [disabled]="file.deleteDisabled">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
 
+    <mat-accordion>
+      <mat-expansion-panel (opened)="onExpanderOpen(file)"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        MetaData
+      </mat-panel-title>
+      <mat-panel-description>
+        Expand to see metadata for this file
+      </mat-panel-description>
+    </mat-expansion-panel-header>
     <app-filedropview [file]="file"></app-filedropview>
+  </mat-expansion-panel>
+    </mat-accordion>
+
+
   </div>
 
 </div>
 
 <!-- <input type="button" (click)="onUpload" /> -->
-<button (click)="onUpload()">Upload Files</button>
-
+<button (click)="onUpload(null)">Fetch All Metadata</button>

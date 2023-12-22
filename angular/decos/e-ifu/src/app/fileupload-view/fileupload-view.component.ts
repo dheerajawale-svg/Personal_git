@@ -12,7 +12,7 @@ import { NotificationService } from '../services/notification.service';
 })
 export class FileuploadViewComponent {
   @ViewChild("fileDropRef", { static: false }) fileDropEl!: ElementRef;
-
+  panelOpenState = false;
   uploadedFiles: UploadedFile[] = [];
   allMetadata = new MatTableDataSource<KvPair>();
   constructor(private httpClient: HttpClient,
@@ -88,17 +88,36 @@ export class FileuploadViewComponent {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   }
 
+  onExpanderOpen(file: UploadedFile) {
+    this.panelOpenState = true;
+    this.onUpload(file);
+  }
 
   result: FileMetadata[] = [];
-  onUpload() {
+  onUpload(fileP: any) {
     const formData = new FormData();
-    for(let file of this.uploadedFiles) {
-      formData.append(file.fileName, file.actualFile);
+    if(fileP) {
+      let thisFile = fileP as UploadedFile;
+      if(!this.metadataExists(thisFile)) {
+        formData.append(thisFile.fileName, thisFile.actualFile);
+      }
+    }
+    else {
+      for(let file of this.uploadedFiles) {
+        if(!this.metadataExists(file)) {
+          formData.append(file.fileName, file.actualFile);
+        }
+      }
     }
 
+    if(formData.entries().next().done) {
+      return;
+    }
+    console.log(formData.entries().next().done)
     this.httpClient.post<FileMetadata[]>('https://eifuwebapi.azurewebsites.net/pdf', formData).subscribe({
       next: (res) => {
         this.result = res;
+        console.log(res);
        },
       error: (error) => {
         console.log(error);
@@ -123,6 +142,13 @@ export class FileuploadViewComponent {
         }
       }
     });
+  }
+
+  metadataExists(file: UploadedFile): boolean {
+    if(file.metadataPresent && file.metadataSource.data.length > 0) {
+      return true;
+    }
+    return false;
   }
 
   /** Return distinct message for sent, upload progress, & response events */

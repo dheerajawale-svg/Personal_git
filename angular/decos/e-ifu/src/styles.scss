@@ -30,8 +30,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-radius: 0px;
 }
 
+.mat-toolbar.mat-primary {
+  background: #008c9a;
+  color: #fff;
+}
+
 .mat-elevation-z7 {
   box-shadow: 0 4px 5px -2px #0003, 0 7px 10px 1px #00000024, 0 2px 16px 1px #0000001f;
+}
+
+.icon-border {
+  border-style: none;
 }
 
 //---------------------------- Theming ------------------------------

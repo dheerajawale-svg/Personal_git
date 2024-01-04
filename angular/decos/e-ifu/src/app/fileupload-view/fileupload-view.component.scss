@@ -89,6 +89,19 @@
   }
 }
 
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo-image {
+  margin-right: 5px;
+}
+
+.logo-image:hover {
+  filter: brightness(90%);
+}
+
 /* Shake animation */
 @keyframes shake {
   0% {

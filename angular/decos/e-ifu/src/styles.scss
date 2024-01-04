@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
-@import '@angular/material/theming';
-// @import "./mixins";
+@use '../node_modules/@angular/material' as mat;
+@import '../node_modules/@angular/material/core/theming/theming';
+
+@import "./mixins";
 
 @include mat.core();
 
@@ -120,35 +121,35 @@ $theme: mat.define-light-theme((
   density: 0,
 ));
 
-$dark-app-theme:   mat-dark-theme((
-        color: (
-                primary: mat-palette($mat-cyan),
-                accent: mat-palette($mat-blue-gray, A200, A100, A400),
-                warn: mat-palette($mat-amber),
-        )
-));
+// $dark-app-theme:   mat-dark-theme((
+//         color: (
+//                 primary: mat-palette($mat-cyan),
+//                 accent: mat-palette($mat-blue-gray, A200, A100, A400),
+//                 warn: mat-palette($mat-amber),
+//         )
+// ));
 
-@mixin body-theme($theme) {
-  $_background: map-get($theme, background);
-  $app-background-color: mat-color($_background, background);
+// @mixin body-theme($theme) {
+//   $_background: map-get($theme, background);
+//   $app-background-color: mat-color($_background, background);
 
-  body {
-    background-color: $app-background-color;
-  }
-}
+//   body {
+//     background-color: $app-background-color;
+//   }
+// }
 
 @include mat.all-component-themes($theme);
-@include body-theme($theme);
+// @include body-theme($theme);
 
-.dark-theme {
-  @include mat.all-component-colors($dark-app-theme);
-  @include body-theme($dark-app-theme);
-}
+// .dark-theme {
+//   @include mat.all-component-colors($dark-app-theme);
+//   @include body-theme($dark-app-theme);
+// }
 
-@import "./mixins";
+// @import "./mixins";
 
-@include responsive-dialogs();
+// @include responsive-dialogs();
 
-.highlight-date {
-  background: red;
-}
+// .highlight-date {
+//   background: red;
+// }

@@ -4,12 +4,12 @@ import { Subscription } from 'rxjs';
 import { NotificationService } from '../services/notification.service';
 
 @Component({
-  selector: 'app-filedropview',
-  templateUrl: './filedropview.component.html',
-  styleUrls: ['./filedropview.component.scss']
+  selector: 'app-metadata-view',
+  templateUrl: './metadata-view.component.html',
+  styleUrls: ['./metadata-view.component.scss']
 })
 
-export class FiledropviewComponent implements OnInit, OnDestroy {
+export class MetadataViewComponent implements OnInit, OnDestroy {
   @Input() file!: UploadedFile;
   displayedColumns: string[] = ['Key', 'Value'];
   detectionSubscription: Subscription = new Subscription;

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, Inject, OnDestroy, ViewChild, inject } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnDestroy, ViewChild } from '@angular/core';
 import { MatProgressBar } from '@angular/material/progress-bar';
 import { MAT_SNACK_BAR_DATA } from '@angular/material/snack-bar';
-import { EMPTY, Observable, Subscription, delay, interval, map, of, startWith, take, takeWhile, tap, throttleTime, timer } from 'rxjs';
+import { Subscription, map, take, timer } from 'rxjs';
 
 @Component({
   selector: 'app-snack-bar',
@@ -17,7 +17,7 @@ export class SnackBarComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     const start = 100;
-    this.countDownSub = timer(100, 50).pipe(
+    this.countDownSub = timer(100, 80).pipe(
       map(i => start - i),
       take(start + 1)
     ).subscribe({

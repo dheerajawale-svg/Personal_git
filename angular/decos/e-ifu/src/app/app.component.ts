@@ -1,10 +1,4 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, NgZone, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { MatRadioChange } from '@angular/material/radio';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { distinctUntilChanged, pluck } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation, signal } from '@angular/core';
 import { NotificationService } from './services/notification.service';
 // import * as metadatalist from '../app/test.json'
 
@@ -12,32 +6,28 @@ import { NotificationService } from './services/notification.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
   isUserLoggedIn: boolean = false;
 
-  showFiller = false;
-  showNavText = false;
+  constructor(private notifyService: NotificationService) {}
 
-  constructor(private observer: BreakpointObserver,
-              private router: Router, private ref: ChangeDetectorRef,
-              private notifyService: NotificationService) {}
-
-  sidenavWidth = 4.5;
-
+  showNavText = signal<boolean>(false);
+  sidenavWidth = signal<number>(4.5);
+  timerId: any;
   increase() {
-    setTimeout(() => {
-      this.showNavText = true;
-      this.sidenavWidth = 15;
-      this.ref.detectChanges();
-
+    this.timerId = setTimeout(() => {
+      this.showNavText.set(true);
+      this.sidenavWidth.set(10);
     }, 1000);
   }
   decrease() {
-    this.showNavText = false;
-    this.sidenavWidth = 4.5;
+    if(this.timerId) {
+      clearTimeout(this.timerId);
+    }
+    this.showNavText.set(false);
+    this.sidenavWidth.set(4.5);
   }
 
   isVisible: boolean = true;

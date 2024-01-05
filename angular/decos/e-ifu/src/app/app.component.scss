@@ -1,3 +1,54 @@
-// .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
-//   line-height: 24px;
-// }
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav-items-wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sidenav-item {
+  margin-left: 15px;
+}
+
+.top-toolbar {
+  position: sticky;
+  z-index: 2;
+  padding: 20px 0;
+}
+
+.close-animate {
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+
+.close-animate:hover {
+  transform: rotate(90deg);
+  // transition: 0.5s;
+}
+
+.toolbar-screens {
+  padding: 0px 10px;
+  border-top: 3px solid transparent;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo-image {
+  margin-right: 5px;
+}
+
+.logo-image:hover {
+  filter: brightness(90%);
+}
+
+.toolbar-screens:hover {
+  cursor: pointer;
+  // border-left: 3px solid #11122b;
+  // border-right: 3px solid #11122b;
+  border-top: 3px solid #11122b;
+}

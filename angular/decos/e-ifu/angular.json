@@ -64,19 +64,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "e-ifu:build:production"
+            "production": {
+              "buildTarget": "e-ifu:build:production"
 						},
-						"development": {
-							"browserTarget": "e-ifu:build:development"
+            "development": {
+              "buildTarget": "e-ifu:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "e-ifu:build"
+          "options": {
+            "buildTarget": "e-ifu:build"
 					}
 				},
 				"test": {

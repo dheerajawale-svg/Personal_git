@@ -15,6 +15,9 @@ export class FileuploadViewComponent {
   panelOpenState = false;
   uploadedFiles: UploadedFile[] = [];
   allMetadata = new MatTableDataSource<KvPair>();
+  // fileUploadApi = 'https://eifuwebapi.azurewebsites.net/pdf';
+  fileUploadApi = 'http://20.12.162.108/pdf';
+
   constructor(private httpClient: HttpClient,
               private notifyService: NotificationService) {}
 
@@ -114,7 +117,7 @@ export class FileuploadViewComponent {
       return;
     }
     console.log(formData.entries().next().done)
-    this.httpClient.post<FileMetadata[]>('https://eifuwebapi.azurewebsites.net/pdf', formData).subscribe({
+    this.httpClient.post<FileMetadata[]>(this.fileUploadApi, formData).subscribe({
       next: (res) => {
         this.result = res;
         console.log(res);

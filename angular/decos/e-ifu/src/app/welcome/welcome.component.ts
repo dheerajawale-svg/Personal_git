@@ -4,6 +4,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, interval, map, mapTo, scan, takeLast, takeWhile } from 'rxjs';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-welcome',
@@ -20,7 +21,8 @@ export class WelcomeComponent {
   constructor(private _formBuilder: FormBuilder,
               private _snackBar: MatSnackBar,
               private elementRef: ElementRef,
-              private _router: Router) {
+              private _router: Router,
+              private notifyService: NotificationService) {
     this.consentForm = _formBuilder.group({
       email: [this.email],
       purpose:['', Validators.required],
@@ -69,6 +71,8 @@ export class WelcomeComponent {
         console.log('done')
         this._router.navigate(['main']);
       });
+
+      this.notifyService.userEntered.next(true);
     }
 
     // console.log(this.consentForm?.value);

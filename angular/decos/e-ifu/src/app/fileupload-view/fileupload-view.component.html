@@ -1,34 +1,3 @@
-<mat-toolbar class="top-toolbar"
-                 color="primary"
-                 [class.mat-elevation-z8]=true>
-
-      <a class="toolbar-screens"
-         matRipple
-         [matMenuTriggerFor]="dropdown">
-        Screens
-      </a>
-
-      <span class="example-spacer"></span>
-
-      <img class="logo-image"
-           width="100px"
-           src="/assets/logo-white.png"
-           alt="natus logo">
-
-      <mat-menu #dropdown>
-
-        <button mat-menu-item
-                routerLink="/main">e-ifus</button>
-
-        <button mat-menu-item
-                routerLink="/fileupload">Upload Files</button>
-
-        <button mat-menu-item
-                routerLink="/">About</button>
-
-      </mat-menu>
-
-    </mat-toolbar>
 
 <div class="container"
      appDrag
@@ -39,7 +8,7 @@
          multiple
          (change)="fileBrowseHandler($event)" />
   <img src="assets/img/dnd/ic-upload-file.svg"
-       alt="">
+       alt="upload file icon">
   <h3>Drag and drop file here</h3>
   <h3>or</h3>
   <label for="fileDropRef">Browse for file</label>
@@ -91,5 +60,8 @@
 
 </div>
 
-<!-- <input type="button" (click)="onUpload" /> -->
-<button (click)="onUpload(null)">Fetch All Metadata</button>
+<div id="wrapper">
+  <button mat-raised-button color="primary"
+          (click)="onUpload(null)" >Fetch All Metadata</button>
+</div>
+

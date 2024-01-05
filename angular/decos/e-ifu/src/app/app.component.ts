@@ -4,8 +4,9 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validatio
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { distinctUntilChanged, pluck } from 'rxjs';
+import { Observable, delay, distinctUntilChanged, fromEvent, pluck, tap } from 'rxjs';
 import { NotificationService } from './services/notification.service';
+import { MatSidenav } from '@angular/material/sidenav';
 // import * as metadatalist from '../app/test.json'
 
 @Component({
@@ -16,25 +17,42 @@ import { NotificationService } from './services/notification.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('sidenav', { static: false, read: ElementRef }, ) sidenav: ElementRef = {} as ElementRef;
   isUserLoggedIn: boolean = false;
 
   showFiller = false;
   showNavText = false;
 
-  constructor(private observer: BreakpointObserver,
-              private router: Router, private ref: ChangeDetectorRef,
+  constructor(private ref: ChangeDetectorRef,
               private notifyService: NotificationService) {}
 
   sidenavWidth = 4.5;
 
-  increase() {
-    setTimeout(() => {
-      this.showNavText = true;
+  onOpen(isOpen : boolean) {
+    // console.log(isOpen);
+    // console.log(this.sidenav);
+    fromEvent(this.sidenav.nativeElement, 'mouseenter')
+    .pipe(delay(1000), tap(() => {
       this.sidenavWidth = 15;
-      this.ref.detectChanges();
+      this.showNavText = true;
+    }))
+    .subscribe(res => {
+      console.log(res);
+    });
+    // if(isOpen) {
 
-    }, 1000);
+    // }
   }
+
+  increase() {
+    // setTimeout(() => {
+    //   this.showNavText = true;
+    //   this.sidenavWidth = 15;
+    //   this.ref.detectChanges();
+
+    // }, 1000);
+  }
+
   decrease() {
     this.showNavText = false;
     this.sidenavWidth = 4.5;
@@ -45,6 +63,9 @@ export class AppComponent implements OnInit, OnDestroy {
   //#region Interface Impl
 
   ngOnInit() {
+
+
+
     this.notifyService.userEntered.subscribe((value) => {
       this.isUserLoggedIn = value;
     })

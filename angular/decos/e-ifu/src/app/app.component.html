@@ -14,7 +14,7 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav
                mode="side"
-               [ngStyle]="{ 'width.em': sidenavWidth }"
+               [ngStyle]="{ 'width.em': sidenavWidth() }"
                (mouseenter)="increase()"
                (mouseleave)="decrease()"
                [class.mat-elevation-z2]=true
@@ -28,11 +28,11 @@
             <mat-icon>question_answer</mat-icon>
           </div>
 
-          <div *ngIf="sidenavWidth > 6"
-               class="sidenav-item">
-            <span>About</span>
-          </div>
-
+          @if (showNavText()) {
+            <div class="sidenav-item">
+              <span>About</span>
+            </div>
+          }
         </div>
       </a>
 
@@ -43,10 +43,12 @@
             <mat-icon>account_circle</mat-icon>
           </div>
 
-          <div *ngIf="sidenavWidth > 6"
-               class="sidenav-item">
-            <span>Login</span>
-          </div>
+          @if (showNavText()) {
+            <div class="sidenav-item">
+              <span>Login</span>
+            </div>
+          }
+
 
         </div>
       </a>
